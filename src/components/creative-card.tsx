@@ -14,8 +14,10 @@ export type CreativeCardProps = {
   bgTo: string;
   accent: string;
   shape: Shape;
-  /** Optional path to a video file, e.g. "/creatives/sylvi.mp4" */
+  /** Path to a video file, e.g. "/creatives/videos/sylvi.mp4" */
   video?: string;
+  /** Path to a static image, e.g. "/creatives/static/sylvi.jpg" */
+  image?: string;
   /** Optional poster frame shown while video loads */
   poster?: string;
   className?: string;
@@ -273,8 +275,54 @@ function MockCreative(props: CreativeCardProps) {
   );
 }
 
-// ---- Public component: picks variant based on `video` prop ----
+// ---- Static image variant ----
+
+function ImageCreative(props: CreativeCardProps) {
+  const { brand, headline, cta, bgFrom, bgTo, accent, image, className = "" } = props;
+  return (
+    <div
+      className={`relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 shadow-2xl ${className}`}
+      style={{ background: `linear-gradient(135deg, ${bgFrom}, ${bgTo})` }}
+    >
+      {/* Static creative fills the card */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={image}
+        alt={`${brand} creative`}
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+      />
+
+      {/* Vignettes for overlay legibility */}
+      <div className="absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-black/55 to-transparent pointer-events-none z-[5]" />
+      <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none z-[5]" />
+
+      <TopBar brand={brand} accent={accent} bgTo={bgTo} />
+
+      {/* Bottom content: headline + CTA */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
+        <div className="text-white font-black text-[13px] uppercase leading-tight mb-3 tracking-tight drop-shadow">
+          {headline}
+        </div>
+        <span
+          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[10px] font-bold"
+          style={{ background: "#fff", color: "#000" }}
+        >
+          {cta}
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+            <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+// ---- Public component: picks variant based on provided media ----
+// Priority: video > image > mock (SVG fallback)
 
 export function CreativeCard(props: CreativeCardProps) {
-  return props.video ? <VideoCreative {...props} /> : <MockCreative {...props} />;
+  if (props.video) return <VideoCreative {...props} />;
+  if (props.image) return <ImageCreative {...props} />;
+  return <MockCreative {...props} />;
 }

@@ -50,6 +50,11 @@ export const brands = [
 // Ad creative mockups — each represents a fake "Meta ad" style preview card.
 // `shape` drives the abstract graphic drawn inside the card.
 // If `video` is set, the card plays a real video instead of the SVG mockup.
+// If `image` is set (and no video), the card shows a real static creative.
+//
+// Drop files into:
+//   /public/creatives/videos/   → .mp4 (H.264, 4:5 aspect, <3MB)
+//   /public/creatives/static/   → .jpg / .png / .webp (4:5 aspect)
 export type CreativeShape =
   | "circle"
   | "pill"
@@ -68,9 +73,11 @@ export type Creative = {
   bgTo: string;
   accent: string;
   shape: CreativeShape;
-  /** Optional path to a video file in /public (e.g. "/creatives/sylvi.mp4") */
+  /** Path to a video file, e.g. "/creatives/videos/sylvi.mp4" */
   video?: string;
-  /** Optional poster image shown before the video loads */
+  /** Path to a static image, e.g. "/creatives/static/sylvi.jpg" */
+  image?: string;
+  /** Poster frame shown while video loads, e.g. "/creatives/static/sylvi.jpg" */
   poster?: string;
 };
 
