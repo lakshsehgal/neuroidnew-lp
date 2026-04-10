@@ -5,7 +5,7 @@ type Brand = { name: string; src: string };
 
 function LogoPill({ brand }: { brand: Brand }) {
   return (
-    <div className="flex-shrink-0 w-40 h-20 sm:w-48 sm:h-24 rounded-2xl bg-white border border-white/10 grid place-items-center px-5 py-4 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_-10px_rgba(229,184,76,0.3)]">
+    <div className="flex-shrink-0 w-40 h-20 sm:w-48 sm:h-24 rounded-2xl bg-white border border-white/10 grid place-items-center px-5 py-4 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_-10px_rgba(255,210,48,0.3)]">
       <div className="relative w-full h-full">
         <Image
           src={brand.src}

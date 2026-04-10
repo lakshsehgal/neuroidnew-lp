@@ -49,7 +49,7 @@ export function Comparison() {
             <div className="rounded-2xl border border-white/10 bg-black/50 py-4 px-5 text-center text-xs font-bold tracking-[0.15em] uppercase text-white/70">
               Category
             </div>
-            <div className="relative rounded-2xl border border-gold/50 bg-gradient-to-b from-gold/25 via-gold/10 to-gold/5 py-4 px-5 text-center text-sm font-black text-gold flex items-center justify-center gap-2 shadow-[0_0_40px_rgba(229,184,76,0.2)]">
+            <div className="relative rounded-2xl border border-gold/50 bg-gradient-to-b from-gold/25 via-gold/10 to-gold/5 py-4 px-5 text-center text-sm font-black text-gold flex items-center justify-center gap-2 shadow-[0_0_40px_rgba(255,210,48,0.2)]">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M2 7l4 7 6-5 6 5 4-7v11H2V7z" />
               </svg>
@@ -69,7 +69,7 @@ export function Comparison() {
               <div className="rounded-2xl border border-white/10 bg-black/50 py-4 px-5 text-center text-sm font-semibold text-white/85 flex items-center justify-center">
                 {row.category}
               </div>
-              <div className="rounded-2xl border border-gold/50 bg-gradient-to-b from-gold/15 via-gold/[0.08] to-gold/[0.03] py-4 px-5 text-center text-sm font-bold text-white shadow-[0_0_25px_rgba(229,184,76,0.1)] flex items-center justify-center gap-2">
+              <div className="rounded-2xl border border-gold/50 bg-gradient-to-b from-gold/15 via-gold/[0.08] to-gold/[0.03] py-4 px-5 text-center text-sm font-bold text-white shadow-[0_0_25px_rgba(255,210,48,0.1)] flex items-center justify-center gap-2">
                 <Check />
                 <span>{row.neuroid}</span>
               </div>
@@ -87,7 +87,7 @@ export function Comparison() {
 
         {/* Mobile Stacked */}
         <div className="md:hidden space-y-8">
-          <div className="rounded-2xl border border-gold/50 bg-gradient-to-b from-gold/15 to-gold/[0.03] p-6 shadow-[0_0_30px_rgba(229,184,76,0.15)]">
+          <div className="rounded-2xl border border-gold/50 bg-gradient-to-b from-gold/15 to-gold/[0.03] p-6 shadow-[0_0_30px_rgba(255,210,48,0.15)]">
             <div className="flex items-center gap-2 text-gold font-black mb-4">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M2 7l4 7 6-5 6 5 4-7v11H2V7z" />

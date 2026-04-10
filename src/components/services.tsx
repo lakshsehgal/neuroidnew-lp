@@ -7,8 +7,8 @@ function PerformanceIllo() {
     <svg viewBox="0 0 180 110" className="w-full h-full">
       <defs>
         <linearGradient id="perfGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#F5C860" />
-          <stop offset="100%" stopColor="#C99B2E" stopOpacity="0.2" />
+          <stop offset="0%" stopColor="#FFDB52" />
+          <stop offset="100%" stopColor="#E6B81F" stopOpacity="0.2" />
         </linearGradient>
       </defs>
       <line x1="0" y1="90" x2="180" y2="90" stroke="#ffffff" strokeOpacity="0.08" />
@@ -22,13 +22,13 @@ function PerformanceIllo() {
       <rect x="140" y="10" width="16" height="80" rx="2" fill="url(#perfGrad)" />
       <polyline
         points="23,70 48,55 73,38 98,45 123,25 148,13"
-        stroke="#F5C860"
+        stroke="#FFDB52"
         strokeWidth="2"
         fill="none"
         strokeLinecap="round"
       />
-      <circle cx="148" cy="13" r="3" fill="#F5C860" />
-      <circle cx="148" cy="13" r="7" fill="#F5C860" opacity="0.3" />
+      <circle cx="148" cy="13" r="3" fill="#FFDB52" />
+      <circle cx="148" cy="13" r="7" fill="#FFDB52" opacity="0.3" />
     </svg>
   );
 }
@@ -38,14 +38,14 @@ function CreativeIllo() {
     <svg viewBox="0 0 180 110" className="w-full h-full">
       <defs>
         <linearGradient id="creGrad1" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#E5B84C" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#E5B84C" stopOpacity="0.1" />
+          <stop offset="0%" stopColor="#FFD230" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#FFD230" stopOpacity="0.1" />
         </linearGradient>
       </defs>
-      <rect x="15" y="25" width="55" height="70" rx="6" fill="url(#creGrad1)" stroke="#E5B84C" strokeOpacity="0.3" transform="rotate(-6 42 60)" />
-      <rect x="60" y="18" width="55" height="75" rx="6" fill="url(#creGrad1)" stroke="#E5B84C" strokeOpacity="0.5" />
-      <rect x="105" y="25" width="55" height="70" rx="6" fill="url(#creGrad1)" stroke="#E5B84C" strokeOpacity="0.3" transform="rotate(6 135 60)" />
-      <circle cx="87" cy="55" r="14" fill="#E5B84C" opacity="0.9" />
+      <rect x="15" y="25" width="55" height="70" rx="6" fill="url(#creGrad1)" stroke="#FFD230" strokeOpacity="0.3" transform="rotate(-6 42 60)" />
+      <rect x="60" y="18" width="55" height="75" rx="6" fill="url(#creGrad1)" stroke="#FFD230" strokeOpacity="0.5" />
+      <rect x="105" y="25" width="55" height="70" rx="6" fill="url(#creGrad1)" stroke="#FFD230" strokeOpacity="0.3" transform="rotate(6 135 60)" />
+      <circle cx="87" cy="55" r="14" fill="#FFD230" opacity="0.9" />
       <polygon points="83,48 96,55 83,62" fill="#050505" />
       <rect x="72" y="75" width="30" height="3" rx="1" fill="#fff" opacity="0.4" />
       <rect x="78" y="82" width="18" height="3" rx="1" fill="#fff" opacity="0.3" />
@@ -58,20 +58,20 @@ function RetentionIllo() {
     <svg viewBox="0 0 180 110" className="w-full h-full">
       <defs>
         <linearGradient id="retGrad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#E5B84C" stopOpacity="0.1" />
-          <stop offset="50%" stopColor="#E5B84C" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="#E5B84C" stopOpacity="0.1" />
+          <stop offset="0%" stopColor="#FFD230" stopOpacity="0.1" />
+          <stop offset="50%" stopColor="#FFD230" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="#FFD230" stopOpacity="0.1" />
         </linearGradient>
       </defs>
-      <circle cx="90" cy="55" r="38" fill="none" stroke="#E5B84C" strokeOpacity="0.25" strokeWidth="1" strokeDasharray="3,4" />
-      <circle cx="90" cy="55" r="26" fill="none" stroke="#E5B84C" strokeOpacity="0.4" strokeWidth="1" strokeDasharray="3,4" />
+      <circle cx="90" cy="55" r="38" fill="none" stroke="#FFD230" strokeOpacity="0.25" strokeWidth="1" strokeDasharray="3,4" />
+      <circle cx="90" cy="55" r="26" fill="none" stroke="#FFD230" strokeOpacity="0.4" strokeWidth="1" strokeDasharray="3,4" />
       <path d="M 52 55 A 38 38 0 0 1 128 55" fill="none" stroke="url(#retGrad)" strokeWidth="2.5" strokeLinecap="round" />
-      <circle cx="90" cy="17" r="6" fill="#E5B84C" />
-      <circle cx="128" cy="55" r="5" fill="#E5B84C" opacity="0.7" />
-      <circle cx="90" cy="93" r="5" fill="#E5B84C" opacity="0.5" />
-      <circle cx="52" cy="55" r="5" fill="#E5B84C" opacity="0.7" />
-      <circle cx="90" cy="55" r="8" fill="#050505" stroke="#E5B84C" strokeWidth="1.5" />
-      <path d="M 87 52 L 90 56 L 94 50" stroke="#E5B84C" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="90" cy="17" r="6" fill="#FFD230" />
+      <circle cx="128" cy="55" r="5" fill="#FFD230" opacity="0.7" />
+      <circle cx="90" cy="93" r="5" fill="#FFD230" opacity="0.5" />
+      <circle cx="52" cy="55" r="5" fill="#FFD230" opacity="0.7" />
+      <circle cx="90" cy="55" r="8" fill="#050505" stroke="#FFD230" strokeWidth="1.5" />
+      <path d="M 87 52 L 90 56 L 94 50" stroke="#FFD230" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -79,20 +79,20 @@ function RetentionIllo() {
 function CROIllo() {
   return (
     <svg viewBox="0 0 180 110" className="w-full h-full">
-      <rect x="20" y="15" width="140" height="85" rx="6" fill="#0a0a0a" stroke="#E5B84C" strokeOpacity="0.25" />
+      <rect x="20" y="15" width="140" height="85" rx="6" fill="#0a0a0a" stroke="#FFD230" strokeOpacity="0.25" />
       <rect x="20" y="15" width="140" height="14" rx="6" fill="#141414" />
-      <circle cx="28" cy="22" r="1.5" fill="#E5B84C" opacity="0.6" />
-      <circle cx="34" cy="22" r="1.5" fill="#E5B84C" opacity="0.4" />
-      <circle cx="40" cy="22" r="1.5" fill="#E5B84C" opacity="0.3" />
+      <circle cx="28" cy="22" r="1.5" fill="#FFD230" opacity="0.6" />
+      <circle cx="34" cy="22" r="1.5" fill="#FFD230" opacity="0.4" />
+      <circle cx="40" cy="22" r="1.5" fill="#FFD230" opacity="0.3" />
       <rect x="50" y="19" width="70" height="6" rx="3" fill="#fff" opacity="0.08" />
-      <rect x="30" y="38" width="60" height="6" rx="1.5" fill="#E5B84C" opacity="0.8" />
+      <rect x="30" y="38" width="60" height="6" rx="1.5" fill="#FFD230" opacity="0.8" />
       <rect x="30" y="48" width="85" height="3" rx="1" fill="#fff" opacity="0.2" />
       <rect x="30" y="54" width="75" height="3" rx="1" fill="#fff" opacity="0.2" />
       <rect x="30" y="60" width="65" height="3" rx="1" fill="#fff" opacity="0.2" />
-      <rect x="30" y="75" width="50" height="14" rx="3" fill="#E5B84C" />
+      <rect x="30" y="75" width="50" height="14" rx="3" fill="#FFD230" />
       <rect x="30" y="75" width="50" height="14" rx="3" fill="url(#croShine)" />
-      <rect x="110" y="40" width="40" height="50" rx="4" fill="#E5B84C" opacity="0.1" stroke="#E5B84C" strokeOpacity="0.3" />
-      <circle cx="130" cy="60" r="10" fill="#E5B84C" opacity="0.3" />
+      <rect x="110" y="40" width="40" height="50" rx="4" fill="#FFD230" opacity="0.1" stroke="#FFD230" strokeOpacity="0.3" />
+      <circle cx="130" cy="60" r="10" fill="#FFD230" opacity="0.3" />
       <defs>
         <linearGradient id="croShine" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="#fff" stopOpacity="0.3" />
@@ -141,7 +141,7 @@ export function Services() {
 
                 {/* Illustration band */}
                 <div className="relative h-36 sm:h-40 border-b border-white/[0.06] bg-black/30 overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(229,184,76,0.08),transparent_70%)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,210,48,0.08),transparent_70%)]" />
                   <div className="absolute inset-0 p-6">{Illo && <Illo />}</div>
                   <div className="absolute top-3 left-4 text-[11px] font-mono text-gold/70 tracking-wider">
                     /{s.num}

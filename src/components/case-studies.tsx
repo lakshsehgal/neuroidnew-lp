@@ -4,7 +4,7 @@ import { caseStudies } from "@/lib/data";
 const presets = [
   { from: "#2a1a3d", to: "#0f0a1a", accent: "#C58CF2" }, // Skincare (purple)
   { from: "#3d0f1a", to: "#1a0810", accent: "#FF6B94" }, // Apparel (rose)
-  { from: "#2a1f05", to: "#1a1303", accent: "#F5C860" }, // Jewelry (gold)
+  { from: "#2a1f05", to: "#1a1303", accent: "#FFDB52" }, // Jewelry (gold)
   { from: "#0f2a1a", to: "#05170e", accent: "#7ED957" }, // F&B (green)
 ];
 

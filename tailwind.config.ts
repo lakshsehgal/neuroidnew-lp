@@ -11,10 +11,10 @@ const config: Config = {
           elevated: "#121212",
         },
         gold: {
-          DEFAULT: "#E5B84C",
-          bright: "#F5C860",
-          dim: "#C99B2E",
-          muted: "#8B6F1F",
+          DEFAULT: "#FFD230",
+          bright: "#FFDB52",
+          dim: "#E6B81F",
+          muted: "#8C7012",
         },
         olive: {
           bg: "#1a1505",

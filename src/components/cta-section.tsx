@@ -30,7 +30,7 @@ export function CTASection() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="mailto:hello@neuroidmedia.com"
-                className="group inline-flex items-center gap-2 px-7 py-4 rounded-full bg-gold text-black font-bold hover:bg-gold-bright transition-colors shadow-[0_0_50px_rgba(229,184,76,0.45)]"
+                className="group inline-flex items-center gap-2 px-7 py-4 rounded-full bg-gold text-black font-bold hover:bg-gold-bright transition-colors shadow-[0_0_50px_rgba(255,210,48,0.45)]"
               >
                 Book a Growth Audit
                 <svg

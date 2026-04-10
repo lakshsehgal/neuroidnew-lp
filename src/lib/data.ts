@@ -88,7 +88,7 @@ export const creatives: Creative[] = [
     cta: "Shop Now",
     bgFrom: "#1a1a2e",
     bgTo: "#0f0f1a",
-    accent: "#E5B84C",
+    accent: "#FFD230",
     shape: "circle",
   },
   {
@@ -97,7 +97,7 @@ export const creatives: Creative[] = [
     cta: "Try It Today",
     bgFrom: "#2a1f0b",
     bgTo: "#1a1505",
-    accent: "#F5C860",
+    accent: "#FFDB52",
     shape: "pill",
   },
   {
@@ -151,7 +151,7 @@ export const creatives: Creative[] = [
     cta: "See Case Study",
     bgFrom: "#2a1f05",
     bgTo: "#1a1303",
-    accent: "#F5C860",
+    accent: "#FFDB52",
     shape: "chart",
   },
 ];

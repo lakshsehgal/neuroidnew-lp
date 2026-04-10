@@ -1,13 +1,19 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-black/50 border-b border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-gold-bright to-gold-dim grid place-items-center shadow-[0_0_20px_rgba(229,184,76,0.3)]">
-            <span className="text-black font-black text-sm leading-none">N</span>
-          </div>
+          <Image
+            src="/brand/logo-mark.png"
+            alt="Neuroid"
+            width={36}
+            height={36}
+            priority
+            className="w-9 h-9 object-contain drop-shadow-[0_0_12px_rgba(255,210,48,0.35)]"
+          />
           <span className="font-black tracking-tight text-lg">
             Neuroid<span className="text-gold">.</span>
           </span>
@@ -30,7 +36,7 @@ export function Nav() {
 
         <a
           href="#contact"
-          className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold text-black font-semibold text-sm hover:bg-gold-bright transition-colors shadow-[0_0_20px_rgba(229,184,76,0.25)]"
+          className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold text-black font-semibold text-sm hover:bg-gold-bright transition-colors shadow-[0_0_20px_rgba(255,210,48,0.25)]"
         >
           Book a Call
           <svg

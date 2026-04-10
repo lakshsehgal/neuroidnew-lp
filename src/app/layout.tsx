@@ -12,18 +12,27 @@ export const metadata: Metadata = {
   title: "Neuroid Media — Creative-Led D2C Growth Agency",
   description:
     "We don't just run your ads — we move into your business. Performance marketing, UGC & performance creatives, retention marketing and CRO for ambitious D2C brands.",
+  icons: {
+    icon: [
+      { url: "/brand/favicon.png", type: "image/png" },
+    ],
+    shortcut: "/brand/favicon.png",
+    apple: "/brand/favicon.png",
+  },
   openGraph: {
     title: "Neuroid Media — Creative-Led D2C Growth Agency",
     description:
       "We don't just run your ads — we move into your business. A holistic growth partner for D2C brands.",
     type: "website",
     url: "https://neuroidmedia.com",
+    images: [{ url: "/brand/logo.png" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Neuroid Media — Creative-Led D2C Growth Agency",
     description:
       "We don't just run your ads — we move into your business.",
+    images: ["/brand/logo.png"],
   },
 };
 

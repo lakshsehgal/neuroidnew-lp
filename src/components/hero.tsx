@@ -39,7 +39,7 @@ export function Hero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <a
             href="#contact"
-            className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gold text-black font-bold hover:bg-gold-bright transition-colors shadow-[0_0_40px_rgba(229,184,76,0.35)]"
+            className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gold text-black font-bold hover:bg-gold-bright transition-colors shadow-[0_0_40px_rgba(255,210,48,0.35)]"
           >
             Book a Growth Audit
             <svg

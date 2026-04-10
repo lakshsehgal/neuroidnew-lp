@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function Footer() {
   const year = new Date().getFullYear();
   return (
@@ -5,9 +7,13 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-gold-bright to-gold-dim grid place-items-center">
-              <span className="text-black font-black text-xs leading-none">N</span>
-            </div>
+            <Image
+              src="/brand/logo-mark.png"
+              alt="Neuroid"
+              width={32}
+              height={32}
+              className="w-8 h-8 object-contain"
+            />
             <span className="font-black tracking-tight">
               Neuroid<span className="text-gold">.</span>
             </span>
