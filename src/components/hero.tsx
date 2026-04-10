@@ -1,6 +1,10 @@
-import { stats } from "@/lib/data";
+import { stats, creatives } from "@/lib/data";
+import { CreativeCard } from "./creative-card";
 
 export function Hero() {
+  // Pick 3 featured creatives for the hero spotlight
+  const spotlight = [creatives[0], creatives[7], creatives[2]];
+
   return (
     <section className="relative pt-36 pb-24 overflow-hidden">
       {/* Background layers */}
@@ -32,7 +36,7 @@ export function Hero() {
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <a
             href="#contact"
             className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gold text-black font-bold hover:bg-gold-bright transition-colors shadow-[0_0_40px_rgba(229,184,76,0.35)]"
@@ -56,6 +60,39 @@ export function Hero() {
           >
             See Case Studies
           </a>
+        </div>
+
+        {/* Floating creative gallery */}
+        <div className="relative max-w-4xl mx-auto mb-16 h-[380px] sm:h-[440px]">
+          <div className="absolute inset-0 bg-gradient-to-t from-transparent via-gold/[0.03] to-transparent blur-2xl" />
+
+          {/* Left card */}
+          <div className="absolute left-0 top-8 w-[38%] sm:w-[34%] max-w-[240px] -rotate-[8deg] hover:rotate-0 hover:scale-105 transition-transform duration-500">
+            <CreativeCard {...spotlight[0]} />
+          </div>
+
+          {/* Center card (bigger, in front) */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[46%] sm:w-[40%] max-w-[300px] z-10 hover:-translate-y-2 transition-transform duration-500">
+            <CreativeCard {...spotlight[1]} />
+          </div>
+
+          {/* Right card */}
+          <div className="absolute right-0 top-8 w-[38%] sm:w-[34%] max-w-[240px] rotate-[8deg] hover:rotate-0 hover:scale-105 transition-transform duration-500">
+            <CreativeCard {...spotlight[2]} />
+          </div>
+
+          {/* Floating labels around the stack */}
+          <div className="hidden md:flex absolute left-[-20px] bottom-12 items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-black/60 backdrop-blur text-[11px] text-white/70">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+            2.3X ROAS
+          </div>
+          <div className="hidden md:flex absolute right-[-10px] top-4 items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-black/60 backdrop-blur text-[11px] text-white/70">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+            ₹5.6L spend / creative
+          </div>
+          <div className="hidden md:flex absolute left-[25%] bottom-[-10px] items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-black/60 backdrop-blur text-[11px] text-white/70">
+            60+ hooks / mo
+          </div>
         </div>
 
         {/* Stats grid */}

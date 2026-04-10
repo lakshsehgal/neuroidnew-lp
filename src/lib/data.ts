@@ -17,6 +17,83 @@ export const clients = [
   "CloakCouture",
 ] as const;
 
+// Ad creative mockups — each represents a fake "Meta ad" style preview card.
+// `shape` drives the abstract graphic drawn inside the card.
+export const creatives = [
+  {
+    brand: "sylvi_official",
+    headline: "WATCHES BUILT FOR HER",
+    cta: "Shop Now",
+    bgFrom: "#1a1a2e",
+    bgTo: "#0f0f1a",
+    accent: "#E5B84C",
+    shape: "circle",
+  },
+  {
+    brand: "nourishyou",
+    headline: "FUEL YOUR MORNING",
+    cta: "Try It Today",
+    bgFrom: "#2a1f0b",
+    bgTo: "#1a1505",
+    accent: "#F5C860",
+    shape: "pill",
+  },
+  {
+    brand: "rust.orange",
+    headline: "HANDMADE IN INDIA",
+    cta: "Discover",
+    bgFrom: "#3d1a0c",
+    bgTo: "#2a1108",
+    accent: "#FF8C42",
+    shape: "blob",
+  },
+  {
+    brand: "bythebay",
+    headline: "COMFORT, REDEFINED",
+    cta: "Shop Collection",
+    bgFrom: "#0a2e3d",
+    bgTo: "#051e2a",
+    accent: "#4FB3BF",
+    shape: "square",
+  },
+  {
+    brand: "house_of_zelena",
+    headline: "ELEGANCE IN EVERY PIECE",
+    cta: "Explore",
+    bgFrom: "#1a0a1e",
+    bgTo: "#0f0517",
+    accent: "#C58CF2",
+    shape: "diamond",
+  },
+  {
+    brand: "sugercandy",
+    headline: "SWEET, SIMPLE, REAL",
+    cta: "Order Now",
+    bgFrom: "#3d0f1a",
+    bgTo: "#240812",
+    accent: "#FF6B94",
+    shape: "wave",
+  },
+  {
+    brand: "cloakcouture",
+    headline: "DRESS THE MOMENT",
+    cta: "Shop Now",
+    bgFrom: "#0f1a0f",
+    bgTo: "#081208",
+    accent: "#7ED957",
+    shape: "triangle",
+  },
+  {
+    brand: "neuroid.wins",
+    headline: "5.7X ROAS / 12 MO",
+    cta: "See Case Study",
+    bgFrom: "#2a1f05",
+    bgTo: "#1a1303",
+    accent: "#F5C860",
+    shape: "chart",
+  },
+] as const;
+
 export const services = [
   {
     num: "01",

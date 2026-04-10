@@ -1,6 +1,7 @@
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
 import { LogoMarquee } from "@/components/logo-marquee";
+import { CreativeShowcase } from "@/components/creative-showcase";
 import { Services } from "@/components/services";
 import { InBusiness } from "@/components/in-business";
 import { Comparison } from "@/components/comparison-table";
@@ -17,6 +18,7 @@ export default function Home() {
       <main className="relative">
         <Hero />
         <LogoMarquee />
+        <CreativeShowcase />
         <Services />
         <InBusiness />
         <Comparison />
