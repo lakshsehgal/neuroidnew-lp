@@ -6,17 +6,14 @@ export function Footer() {
     <footer className="border-t border-white/[0.06] py-12 mt-10">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center">
             <Image
-              src="/brand/logo-mark.png"
+              src="/brand/logo.png"
               alt="Neuroid"
-              width={32}
-              height={32}
-              className="w-8 h-8 object-contain"
+              width={140}
+              height={36}
+              className="h-8 w-auto object-contain"
             />
-            <span className="font-black tracking-tight">
-              Neuroid<span className="text-gold">.</span>
-            </span>
           </div>
 
           <div className="text-sm text-white/40">

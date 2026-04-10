@@ -5,18 +5,15 @@ export function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-black/50 border-b border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5 group">
+        <Link href="/" className="flex items-center group">
           <Image
-            src="/brand/logo-mark.png"
+            src="/brand/logo.png"
             alt="Neuroid"
-            width={36}
-            height={36}
+            width={160}
+            height={40}
             priority
-            className="w-9 h-9 object-contain drop-shadow-[0_0_12px_rgba(255,210,48,0.35)]"
+            className="h-9 w-auto object-contain"
           />
-          <span className="font-black tracking-tight text-lg">
-            Neuroid<span className="text-gold">.</span>
-          </span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 text-sm text-white/70">
