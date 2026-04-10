@@ -1,0 +1,204 @@
+// All homepage content lives here — easy to edit without hunting through components.
+
+export const stats = [
+  { value: "40+", label: "D2C brands scaled" },
+  { value: "₹150Cr+", label: "in client revenue" },
+  { value: "$17M+", label: "generated for partners" },
+  { value: "₹50Cr+", label: "driven every month" },
+] as const;
+
+export const clients = [
+  "Sylvi",
+  "NourishYou",
+  "RustOrange",
+  "Sugercandy",
+  "ByTheBay",
+  "House of Zelena",
+  "CloakCouture",
+] as const;
+
+export const services = [
+  {
+    num: "01",
+    title: "Performance Marketing",
+    subtitle: "Meta & Google Ads",
+    desc: "Engineered media systems that drive incremental reach, maximize AOV and build predictable profitability. Full-funnel campaign architecture with continuous bid, audience & budget optimization to maximize MER/ROAS.",
+    tags: ["Meta Ads", "Google Ads", "Full-funnel", "MER/ROAS"],
+  },
+  {
+    num: "02",
+    title: "UGC & Performance Creatives",
+    subtitle: "Creative that scales",
+    desc: "Our streamlined creative engine produces winners that scale to ₹5–6L spend per creative. UGCs, HighProds, lifestyle, statics & motion — all tested through structured creative systems designed for consistent winners.",
+    tags: ["UGC", "HighProds", "Statics", "Motion", "Iteration"],
+  },
+  {
+    num: "03",
+    title: "Retention Marketing",
+    subtitle: "LTV unlocked",
+    desc: "Email, SMS, WhatsApp, community & loyalty — retention flows that compound AOV and LTV. We turn first-time buyers into repeat revenue long after the ad click.",
+    tags: ["Email", "SMS", "WhatsApp", "Loyalty", "LTV"],
+  },
+  {
+    num: "04",
+    title: "CRO & Landing Pages",
+    subtitle: "Conversion architecture",
+    desc: "We re-architect the journey from ad click to checkout — product pages, offer stacks, AOV builders and custom landing pages built for scale and tested against real traffic.",
+    tags: ["Landing Pages", "PDP", "Offer Strategy", "AOV"],
+  },
+] as const;
+
+export const inBusinessPillars = [
+  {
+    icon: "research",
+    title: "Creative Research",
+    desc: "We sit inside your customer reviews, competitor ads and category trends — not outside of them.",
+  },
+  {
+    icon: "product",
+    title: "Product Ideas",
+    desc: "New bundles, SKUs and hero products — we weigh in on what to sell next.",
+  },
+  {
+    icon: "offer",
+    title: "Offer Strategy",
+    desc: "Promos, AOV builders and margin math — modelled against your P&L, not just ROAS.",
+  },
+  {
+    icon: "site",
+    title: "Website Feedback",
+    desc: "PDP, cart, checkout and landers — we're in the doc with you every week.",
+  },
+  {
+    icon: "retain",
+    title: "Retention Strategy",
+    desc: "Email, SMS, WhatsApp and loyalty loops — designed hand-in-hand with paid.",
+  },
+  {
+    icon: "outside",
+    title: "Outside-of-Meta Growth",
+    desc: "Influencer, affiliate, marketplace — we don't pretend the world ends at Ads Manager.",
+  },
+] as const;
+
+export const comparison = {
+  rows: [
+    {
+      category: "Creative–Media Synergy",
+      neuroid: "Fully Integrated",
+      paid: "Disconnected",
+      creative: "No Distribution",
+    },
+    {
+      category: "Growth Strategy & Financial Planning",
+      neuroid: "Detailed Growth Maps",
+      paid: "Not Offered",
+      creative: "Not Offered",
+    },
+    {
+      category: "Brand Alignment & In-depth Research",
+      neuroid: "Deep & Actionable",
+      paid: "Minimal Insights",
+      creative: "No Connection to Distribution",
+    },
+    {
+      category: "Diversified Creative Outputs",
+      neuroid: "UGCs, High Prods, Lifestyle & Statics",
+      paid: "No Creative Offerings",
+      creative: "Limited Capabilities",
+    },
+    {
+      category: "Full Customer Journey Experience",
+      neuroid: "Landing Page, LTV, AOV, RCC",
+      paid: "Limited to Paid Media",
+      creative: "Limited to Creative Assets",
+    },
+    {
+      category: "Seamless Comms",
+      neuroid: "Daily Collaboration",
+      paid: "No Integration",
+      creative: "Minimal",
+    },
+  ],
+} as const;
+
+export const caseStudies = [
+  {
+    tag: "Skincare",
+    headline: "₹1.5Cr+ MRR",
+    metric: "2.3X",
+    metricLabel: "ROAS",
+    note: "Run-rate maintained at scale with consistent creative refresh.",
+  },
+  {
+    tag: "Women's Apparel",
+    headline: "₹5.18Cr / 12 mo",
+    metric: "5.7X",
+    metricLabel: "ROAS",
+    note: "Scaled profitably across four consecutive quarters.",
+  },
+  {
+    tag: "Jewelry",
+    headline: "₹5.6L → ₹86.7L",
+    metric: "4.3X",
+    metricLabel: "ROAS",
+    note: "15× monthly revenue jump in 10 months (+24% ROAS improvement).",
+  },
+  {
+    tag: "Food & Beverage",
+    headline: "₹1.92Cr / 3 mo",
+    metric: "2.29X",
+    metricLabel: "ROAS",
+    note: "Zero-to-one launch — profitable from month one.",
+  },
+] as const;
+
+export const processSteps = [
+  {
+    step: "01",
+    title: "Deep Discovery",
+    desc: "We dissect first-party data, audience behavior and platform dynamics to architect a growth model tailored to your brand's scale stage.",
+  },
+  {
+    step: "02",
+    title: "Growth Map",
+    desc: "A detailed plan across media, creative, retention and CRO — mapped against revenue, AOV, LTV and contribution margin targets.",
+  },
+  {
+    step: "03",
+    title: "Creative Engine",
+    desc: "Hook, messaging and format ideation driven by performance data. Systematic production and iterative testing at volume.",
+  },
+  {
+    step: "04",
+    title: "Relentless Iteration",
+    desc: "Creatives, offers, audiences and landing pages evolve through analytics — sustained scale without fatigue.",
+  },
+] as const;
+
+export const testimonials = [
+  {
+    quote:
+      "Working with Neuroid has been seamless and an outcome-driven partnership. Their ownership mindset and solution-focused approach make them a trusted extension of our team.",
+    author: "Founder",
+    brand: "D2C Beauty Brand",
+  },
+  {
+    quote:
+      "They combine strong technical capability with a deep understanding of the D2C ecosystem.",
+    author: "Marketing Head",
+    brand: "Fashion Label",
+  },
+  {
+    quote:
+      "Brand visibility and engagement have been achieved at great scale. Neuroid will be top of charts when it comes to recommendations.",
+    author: "Co-founder",
+    brand: "Lifestyle Brand",
+  },
+  {
+    quote:
+      "They have been a great performance marketing team — very impactful and working hard to lift our performance.",
+    author: "Growth Lead",
+    brand: "Consumer Goods",
+  },
+] as const;
