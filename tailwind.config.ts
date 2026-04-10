@@ -28,6 +28,7 @@ const config: Config = {
         marquee: "marquee 45s linear infinite",
         "marquee-reverse": "marquee-reverse 50s linear infinite",
         "marquee-up": "marquee-up 70s linear infinite",
+        "marquee-down": "marquee-down 70s linear infinite",
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       keyframes: {
@@ -42,6 +43,10 @@ const config: Config = {
         "marquee-up": {
           "0%": { transform: "translateY(0%)" },
           "100%": { transform: "translateY(-50%)" },
+        },
+        "marquee-down": {
+          "0%": { transform: "translateY(-50%)" },
+          "100%": { transform: "translateY(0%)" },
         },
       },
       backgroundImage: {

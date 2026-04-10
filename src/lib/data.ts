@@ -1,10 +1,9 @@
 // All homepage content lives here — easy to edit without hunting through components.
 
 export const stats = [
-  { value: "40+", label: "D2C brands scaled" },
-  { value: "₹150Cr+", label: "in client revenue" },
-  { value: "$17M+", label: "generated for partners" },
-  { value: "₹50Cr+", label: "driven every month" },
+  { value: "₹150Cr+", label: "Attributed Client Revenue" },
+  { value: "94%", label: "Client Retention Rate" },
+  { value: "4.2X", label: "Avg. Net Shopify ROAS" },
 ] as const;
 
 export const clients = [
