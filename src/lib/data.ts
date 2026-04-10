@@ -81,6 +81,52 @@ export type Creative = {
   poster?: string;
 };
 
+// Real media for the Creative Wall scrolling section.
+// Point at files dropped in /public/creatives/static and /public/creatives/videos.
+// The component URL-encodes paths, so spaces/parens/apostrophes in filenames are fine.
+export type CreativeMedia = { type: "image" | "video"; src: string };
+
+export const creativeWall: CreativeMedia[] = [
+  // Statics
+  { type: "image", src: "/creatives/static/Artboard 1 copy.png" },
+  { type: "image", src: "/creatives/static/Artboard 1tu.png" },
+  { type: "image", src: "/creatives/static/Artboard 1uyigu (1).png" },
+  { type: "image", src: "/creatives/static/Artboard 3 (1).png" },
+  { type: "image", src: "/creatives/static/1 (2) (1) (1).png" },
+  { type: "image", src: "/creatives/static/CC100_Review Static_Static.jpg" },
+  { type: "image", src: "/creatives/static/CC14 _ Mirage _ Static -01.jpg" },
+  { type: "image", src: "/creatives/static/CC15- Winter wear2 (1).jpg" },
+  { type: "image", src: "/creatives/static/CC16- LEGGING - Static.jpg" },
+  { type: "image", src: "/creatives/static/CC22_Sale frame_Static (1).jpg" },
+  { type: "image", src: "/creatives/static/CC3  BFCM Static 02_Sq.jpg" },
+  { type: "image", src: "/creatives/static/CC80_Hype Static_01.jpg" },
+  { type: "image", src: "/creatives/static/CC80_Hype Static_02.jpg" },
+  { type: "image", src: "/creatives/static/CC82_Valentine day_Banner_valentine's Edit (1).jpg" },
+  { type: "image", src: "/creatives/static/CC94_Bestsellers_Static-03.jpg" },
+  { type: "image", src: "/creatives/static/Drip Project Year end sale 960X1200.jpg" },
+  { type: "image", src: "/creatives/static/Hoodie Unstd V1 .png" },
+  { type: "image", src: "/creatives/static/Jaipuri Crown_CC23.jpg" },
+  { type: "image", src: "/creatives/static/Nourish you milk 4X5 (2).png" },
+  { type: "image", src: "/creatives/static/OPT 1.jpg" },
+  { type: "image", src: "/creatives/static/OPT 2.jpg" },
+  { type: "image", src: "/creatives/static/Oats 1080x1080.jpg" },
+  { type: "image", src: "/creatives/static/V3_1200.jpg" },
+  { type: "image", src: "/creatives/static/Youglo Glitter BFCM Sale V1.png" },
+  // Videos
+  { type: "video", src: "/creatives/videos/Sylvi Male-V1 (1).mp4" },
+  { type: "video", src: "/creatives/videos/Gataca_UGC_04.mp4" },
+  { type: "video", src: "/creatives/videos/H1 Gataca UGC 5 NMN V1 (1) (1).mp4" },
+  { type: "video", src: "/creatives/videos/NH_UGC_03_V1 (1) (1) (1).mp4" },
+  { type: "video", src: "/creatives/videos/SSU 2 Arhan (1) (1).mp4" },
+  { type: "video", src: "/creatives/videos/UGC 4_ DFL- Script 1 (1).mp4" },
+  { type: "video", src: "/creatives/videos/UGC 5 Rush hourV2 (1) (1).mp4" },
+  { type: "video", src: "/creatives/videos/UGC 6 _ PUW 2 _ Hook 1 (1) (1).mp4" },
+  { type: "video", src: "/creatives/videos/UGC_01_ Rugs Video (1) (1) (1).mp4" },
+  { type: "video", src: "/creatives/videos/Yoho UGC 3 CollectionV1 (1) (1).mp4" },
+  { type: "video", src: "/creatives/videos/varee CC4 mashup (1).mp4" },
+  { type: "video", src: "/creatives/videos/4bz__23RW3CKB5gyeRRsn (1) (2) copy.mp4" },
+];
+
 export const creatives: Creative[] = [
   {
     brand: "sylvi_official",
