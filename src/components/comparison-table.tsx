@@ -26,18 +26,18 @@ const X = () => (
 
 export function Comparison() {
   return (
-    <section id="compare" className="py-28 sm:py-32 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-block text-[11px] uppercase tracking-[0.25em] text-gold mb-4 font-semibold">
+    <section id="compare" className="py-20 sm:py-24 lg:py-28 relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-block text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-gold mb-3 sm:mb-4 font-semibold">
             / Why Neuroid
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1] tracking-[-0.02em] mb-5">
+          <h2 className="text-[2rem] sm:text-5xl lg:text-6xl font-black leading-[1] tracking-[-0.02em] mb-4 sm:mb-5">
             Most agencies pick a lane.
             <br />
             <span className="text-gradient-gold">We own the whole funnel.</span>
           </h2>
-          <p className="text-white/55 text-lg">
+          <p className="text-white/55 text-[15px] sm:text-lg">
             Creative, media and conversion — run as one integrated system, not three disconnected silos.
           </p>
         </div>

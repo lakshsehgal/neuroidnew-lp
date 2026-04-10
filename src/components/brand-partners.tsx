@@ -25,17 +25,17 @@ export function BrandPartners() {
   const row2 = brands.slice(12, 24);
 
   return (
-    <section className="py-24 sm:py-28 relative overflow-hidden">
+    <section className="py-16 sm:py-20 lg:py-24 relative overflow-hidden">
       {/* Ambient gold glows */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gold/[0.04] blur-[120px] rounded-full pointer-events-none" />
 
       <div className="relative">
         {/* Header */}
-        <div className="max-w-4xl mx-auto px-6 text-center mb-14">
-          <div className="inline-block text-[11px] uppercase tracking-[0.25em] text-white/55 mb-5 px-4 py-1.5 rounded-full border border-white/15 bg-white/[0.03] backdrop-blur font-semibold">
+        <div className="max-w-4xl mx-auto px-5 sm:px-6 text-center mb-10 sm:mb-14">
+          <div className="inline-block text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-white/55 mb-4 sm:mb-5 px-3.5 sm:px-4 py-1.5 rounded-full border border-white/15 bg-white/[0.03] backdrop-blur font-semibold">
             D2C Brands
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-[1.05] tracking-[-0.02em]">
+          <h2 className="text-[1.75rem] sm:text-4xl lg:text-5xl font-black leading-[1.05] tracking-[-0.02em]">
             Growth Partners to some of
             <br />
             the <span className="text-gradient-gold">Top D2C Brands</span> in India

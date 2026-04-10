@@ -41,18 +41,18 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export function InBusiness() {
   return (
-    <section className="py-28 sm:py-32 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="max-w-3xl mb-16">
-          <div className="inline-block text-[11px] uppercase tracking-[0.25em] text-gold mb-4 font-semibold">
+    <section className="py-20 sm:py-24 lg:py-28 relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6">
+        <div className="max-w-3xl mb-12 sm:mb-16">
+          <div className="inline-block text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-gold mb-3 sm:mb-4 font-semibold">
             / Not just another agency
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1] tracking-[-0.02em]">
+          <h2 className="text-[2rem] sm:text-5xl lg:text-6xl font-black leading-[1] tracking-[-0.02em]">
             We don&apos;t just run your ads.
             <br />
             <span className="text-gradient-gold">We&apos;re in your business.</span>
           </h2>
-          <p className="mt-6 text-white/55 max-w-2xl">
+          <p className="mt-5 sm:mt-6 text-[15px] sm:text-base text-white/55 max-w-2xl">
             Most agencies hand you a weekly deck and call it a partnership. We sit inside your business —
             part strategist, part operator, part extension of your team.
           </p>

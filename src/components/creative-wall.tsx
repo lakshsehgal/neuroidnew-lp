@@ -119,10 +119,10 @@ export function CreativeWall() {
   const durations = ["72s", "88s", "80s", "95s", "78s"];
 
   return (
-    <section className="relative py-20 sm:py-24 overflow-hidden">
+    <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden">
       {/* The scrolling wall (5 lanes on desktop) */}
-      <div className="relative h-[820px] sm:h-[920px] overflow-hidden">
-        <div className="absolute inset-0 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 px-3 sm:px-5">
+      <div className="relative h-[680px] sm:h-[820px] lg:h-[920px] overflow-hidden">
+        <div className="absolute inset-0 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4 px-3 sm:px-5">
           <Column items={cols[0]} duration={durations[0]} />
           <Column items={cols[1]} duration={durations[1]} />
           <Column items={cols[2]} duration={durations[2]} className="hidden sm:flex" />
@@ -136,20 +136,20 @@ export function CreativeWall() {
 
         {/* Floating overlay card — left-aligned on desktop, centered on mobile */}
         <div className="absolute inset-0 flex items-center justify-center lg:justify-start px-4 sm:px-6 lg:pl-[7%] z-20 pointer-events-none">
-          <div className="pointer-events-auto w-full max-w-md bg-black/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)]">
-            <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight mb-5 leading-[0.95]">
+          <div className="pointer-events-auto w-full max-w-[20rem] sm:max-w-md bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-9 lg:p-10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight mb-4 sm:mb-5 leading-[0.95]">
               Creative that
               <br />
               converts.
             </h2>
-            <p className="text-white/65 text-base sm:text-[17px] mb-8 leading-relaxed">
+            <p className="text-white/65 text-sm sm:text-base lg:text-[17px] mb-6 sm:mb-8 leading-relaxed">
               Our ads don&apos;t just look good —{" "}
               <span className="text-white font-bold">they perform</span>. High-production, UGC, and
               design concepts that command attention, lower CAC, increase CTR and fuel profit.
             </p>
             <a
               href="#contact"
-              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gold text-black font-black uppercase text-sm tracking-wide hover:bg-gold-bright transition-colors shadow-[0_0_40px_rgba(255,210,48,0.4)]"
+              className="group inline-flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-gold text-black font-black uppercase text-xs sm:text-sm tracking-wide hover:bg-gold-bright hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 shadow-[0_0_40px_rgba(255,210,48,0.4)]"
             >
               Book a Free Discovery Call
               <svg

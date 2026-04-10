@@ -1,8 +1,8 @@
 export function CTASection() {
   return (
-    <section id="contact" className="py-28 sm:py-32 relative">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="relative rounded-[2rem] border border-gold/30 overflow-hidden p-10 md:p-16 lg:p-20 text-center">
+    <section id="contact" className="py-20 sm:py-24 lg:py-28 relative">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6">
+        <div className="relative rounded-[1.5rem] sm:rounded-[2rem] border border-gold/30 overflow-hidden p-8 sm:p-14 md:p-16 lg:p-20 text-center">
           <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.18] via-gold/[0.05] to-transparent" />
           <div className="absolute inset-0 bg-grid-overlay opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4/5 h-1/2 bg-gold/25 blur-[140px] rounded-full" />
@@ -17,12 +17,12 @@ export function CTASection() {
               Taking on 3 new brands this quarter
             </div>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1] tracking-[-0.02em] mb-6">
+            <h2 className="text-[2rem] sm:text-5xl lg:text-6xl font-black leading-[1] tracking-[-0.02em] mb-5 sm:mb-6">
               Ready to scale
               <br />
               <span className="text-gradient-gold">profitably?</span>
             </h2>
-            <p className="text-base sm:text-lg text-white/60 max-w-xl mx-auto mb-10 leading-relaxed">
+            <p className="text-[15px] sm:text-lg text-white/60 max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
               Book a free 30-minute growth audit. We&apos;ll walk through your funnel and map the quickest
               path to profitable scale.
             </p>

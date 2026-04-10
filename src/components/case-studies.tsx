@@ -42,18 +42,18 @@ function SparkChart({ color }: { color: string }) {
 
 export function CaseStudies() {
   return (
-    <section id="work" className="py-28 sm:py-32 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+    <section id="work" className="py-20 sm:py-24 lg:py-28 relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-5 sm:gap-6">
           <div className="max-w-2xl">
-            <div className="inline-block text-[11px] uppercase tracking-[0.25em] text-gold mb-4 font-semibold">
+            <div className="inline-block text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-gold mb-3 sm:mb-4 font-semibold">
               / Proof in numbers
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1] tracking-[-0.02em]">
+            <h2 className="text-[2rem] sm:text-5xl lg:text-6xl font-black leading-[1] tracking-[-0.02em]">
               Results that <span className="text-gradient-gold">compound.</span>
             </h2>
           </div>
-          <p className="text-white/55 max-w-sm">
+          <p className="text-[15px] sm:text-base text-white/55 max-w-sm">
             We measure success in MRR run-rates, ROAS holds at scale, and months from zero to profitable.
           </p>
         </div>
