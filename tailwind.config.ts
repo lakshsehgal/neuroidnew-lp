@@ -25,13 +25,18 @@ const config: Config = {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
       animation: {
-        marquee: "marquee 40s linear infinite",
+        marquee: "marquee 45s linear infinite",
+        "marquee-reverse": "marquee-reverse 50s linear infinite",
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       keyframes: {
         marquee: {
           "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        "marquee-reverse": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0%)" },
         },
       },
       backgroundImage: {

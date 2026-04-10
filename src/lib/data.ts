@@ -17,6 +17,32 @@ export const clients = [
   "CloakCouture",
 ] as const;
 
+// Brand partners — D2C brands Neuroid has scaled.
+// Priority brands (Lifelong, Silverfied, Jewelsmars, Kisah) come first
+// so they appear in the visible frame when the marquee starts.
+export const brands = [
+  { name: "Lifelong", src: "/logos/16.png" },
+  { name: "Silverfied", src: "/logos/4.png" },
+  { name: "Jewelsmars", src: "/logos/18.png" },
+  { name: "Kisah", src: "/logos/17.png" },
+  { name: "Sylvi", src: "/logos/10.png" },
+  { name: "NourishYou", src: "/logos/3.png" },
+  { name: "Rust Orange", src: "/logos/12.png" },
+  { name: "SuperBottoms", src: "/logos/19.png" },
+  { name: "Deep Impact", src: "/logos/6.png" },
+  { name: "Jaipuri Crown", src: "/logos/8.png" },
+  { name: "Yoho", src: "/logos/5.png" },
+  { name: "Spirit Animal", src: "/logos/11.png" },
+  { name: "Truth & Hair", src: "/logos/13.png" },
+  { name: "Jynara", src: "/logos/15.png" },
+  { name: "YouGlo", src: "/logos/1.png" },
+  { name: "Vedansh Craft", src: "/logos/7.png" },
+  { name: "Loving Crafts", src: "/logos/2.png" },
+  { name: "Unstd", src: "/logos/9.png" },
+  { name: "Ghani Phutri", src: "/logos/14.png" },
+  { name: "Cup-ji", src: "/logos/20.png" },
+] as const;
+
 // Ad creative mockups — each represents a fake "Meta ad" style preview card.
 // `shape` drives the abstract graphic drawn inside the card.
 export const creatives = [

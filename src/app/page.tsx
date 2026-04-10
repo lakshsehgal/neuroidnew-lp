@@ -1,6 +1,6 @@
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
-import { LogoMarquee } from "@/components/logo-marquee";
+import { BrandPartners } from "@/components/brand-partners";
 import { CreativeShowcase } from "@/components/creative-showcase";
 import { Services } from "@/components/services";
 import { InBusiness } from "@/components/in-business";
@@ -17,7 +17,7 @@ export default function Home() {
       <Nav />
       <main className="relative">
         <Hero />
-        <LogoMarquee />
+        <BrandPartners />
         <CreativeShowcase />
         <Services />
         <InBusiness />
