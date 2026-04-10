@@ -18,10 +18,11 @@ export const clients = [
 ] as const;
 
 // Brand partners — D2C brands Neuroid has scaled.
-// Priority brands (Lifelong, Silverfied, Jewelsmars, Kisah) come first
-// so they appear in the visible frame when the marquee starts.
+// Priority brands (Lifelong, Wooden Street, Silverfied, Jewelsmars, Kisah)
+// come first so they appear in the visible frame when row 1 starts.
 export const brands = [
   { name: "Lifelong", src: "/logos/16.png" },
+  { name: "Wooden Street", src: "/logos/21.png" },
   { name: "Silverfied", src: "/logos/4.png" },
   { name: "Jewelsmars", src: "/logos/18.png" },
   { name: "Kisah", src: "/logos/17.png" },
@@ -41,6 +42,9 @@ export const brands = [
   { name: "Unstd", src: "/logos/9.png" },
   { name: "Ghani Phutri", src: "/logos/14.png" },
   { name: "Cup-ji", src: "/logos/20.png" },
+  { name: "Chase", src: "/logos/22.png" },
+  { name: "Gataca", src: "/logos/23.png" },
+  { name: "Hege", src: "/logos/24.png" },
 ] as const;
 
 // Ad creative mockups — each represents a fake "Meta ad" style preview card.

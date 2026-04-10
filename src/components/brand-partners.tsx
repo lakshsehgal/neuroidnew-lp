@@ -20,9 +20,9 @@ function LogoPill({ brand }: { brand: Brand }) {
 }
 
 export function BrandPartners() {
-  // Split 20 brands into two rows of 10 — priority brands land in row 1
-  const row1 = brands.slice(0, 10);
-  const row2 = brands.slice(10, 20);
+  // Split 24 brands into two rows of 12 — priority brands land in row 1
+  const row1 = brands.slice(0, 12);
+  const row2 = brands.slice(12, 24);
 
   return (
     <section className="py-24 sm:py-28 relative overflow-hidden">
@@ -62,7 +62,7 @@ export function BrandPartners() {
 
         {/* Sub-label */}
         <div className="text-center mt-10 text-sm text-white/40">
-          <span className="font-semibold text-white/60">20+ brands scaled</span>
+          <span className="font-semibold text-white/60">24+ brands scaled</span>
           {" · "}
           ₹150Cr+ in client revenue driven
         </div>
