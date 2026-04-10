@@ -1,24 +1,54 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { creativeWall, type CreativeMedia } from "@/lib/data";
 
-// ---- Tile: either a muted autoplay video or a static image ----
+// ---- Lazy video tile: only plays when in viewport ----
+
+function LazyVideoTile({ src }: { src: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            /* autoplay blocked — silently ignore */
+          });
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.15, rootMargin: "100px" },
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      src={src}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      className="w-full h-auto rounded-xl block border border-white/[0.06] bg-black"
+    />
+  );
+}
+
+// ---- Tile dispatch ----
 
 function CreativeTile({ item }: { item: CreativeMedia }) {
   const src = encodeURI(item.src);
 
   if (item.type === "video") {
-    return (
-      <video
-        src={src}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        className="w-full h-auto rounded-xl block border border-white/[0.06] bg-black"
-      />
-    );
+    return <LazyVideoTile src={src} />;
   }
   return (
     // eslint-disable-next-line @next/next/no-img-element
@@ -26,6 +56,7 @@ function CreativeTile({ item }: { item: CreativeMedia }) {
       src={src}
       alt=""
       loading="lazy"
+      decoding="async"
       className="w-full h-auto rounded-xl block border border-white/[0.06] bg-black"
     />
   );

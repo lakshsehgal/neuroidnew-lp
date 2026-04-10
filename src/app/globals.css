@@ -6,15 +6,19 @@
   --bg: #050505;
   --gold: #ffd230;
   --gold-bright: #ffdb52;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap: cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 html,
@@ -31,7 +35,7 @@ body {
   background-attachment: fixed;
 }
 
-/* Gold text gradient */
+/* ============ Gold text gradient ============ */
 .text-gradient-gold {
   background: linear-gradient(135deg, #ffdb52 0%, #ffd230 50%, #e6b81f 100%);
   -webkit-background-clip: text;
@@ -39,7 +43,7 @@ body {
   background-clip: text;
 }
 
-/* Grid overlay */
+/* ============ Grid overlay ============ */
 .bg-grid-overlay {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
@@ -47,7 +51,79 @@ body {
   background-size: 56px 56px;
 }
 
-/* Custom scrollbar */
+/* ============ Entrance keyframes ============ */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -18px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes floatY {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-slide-down {
+  animation: slideDown 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-scale-in {
+  animation: scaleIn 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-float {
+  animation: floatY 4s ease-in-out infinite;
+}
+
+/* ============ Custom scrollbar ============ */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -63,8 +139,20 @@ body {
   background: #2a2a2a;
 }
 
-/* Selection */
+/* ============ Selection ============ */
 ::selection {
   background: rgba(255, 210, 48, 0.3);
   color: #fff;
+}
+
+/* ============ Respect reduced motion ============ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

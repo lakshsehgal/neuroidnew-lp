@@ -10,22 +10,46 @@ import { Process } from "@/components/process";
 import { Testimonials } from "@/components/testimonials";
 import { CTASection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
+import { Reveal } from "@/components/reveal";
+import { ScrollProgress } from "@/components/scroll-progress";
 
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
       <Nav />
       <main className="relative">
+        {/* Hero has its own stagger entrance — no Reveal wrapper */}
         <Hero />
-        <BrandPartners />
-        <CreativeWall />
-        <Services />
-        <InBusiness />
-        <Comparison />
-        <CaseStudies />
-        <Process />
-        <Testimonials />
-        <CTASection />
+
+        {/* Everything below fades + slides in as it enters the viewport */}
+        <Reveal>
+          <BrandPartners />
+        </Reveal>
+        <Reveal>
+          <CreativeWall />
+        </Reveal>
+        <Reveal>
+          <Services />
+        </Reveal>
+        <Reveal>
+          <InBusiness />
+        </Reveal>
+        <Reveal>
+          <Comparison />
+        </Reveal>
+        <Reveal>
+          <CaseStudies />
+        </Reveal>
+        <Reveal>
+          <Process />
+        </Reveal>
+        <Reveal>
+          <Testimonials />
+        </Reveal>
+        <Reveal>
+          <CTASection />
+        </Reveal>
       </main>
       <Footer />
     </>
