@@ -49,7 +49,32 @@ export const brands = [
 
 // Ad creative mockups — each represents a fake "Meta ad" style preview card.
 // `shape` drives the abstract graphic drawn inside the card.
-export const creatives = [
+// If `video` is set, the card plays a real video instead of the SVG mockup.
+export type CreativeShape =
+  | "circle"
+  | "pill"
+  | "blob"
+  | "square"
+  | "diamond"
+  | "wave"
+  | "triangle"
+  | "chart";
+
+export type Creative = {
+  brand: string;
+  headline: string;
+  cta: string;
+  bgFrom: string;
+  bgTo: string;
+  accent: string;
+  shape: CreativeShape;
+  /** Optional path to a video file in /public (e.g. "/creatives/sylvi.mp4") */
+  video?: string;
+  /** Optional poster image shown before the video loads */
+  poster?: string;
+};
+
+export const creatives: Creative[] = [
   {
     brand: "sylvi_official",
     headline: "WATCHES BUILT FOR HER",
@@ -122,7 +147,7 @@ export const creatives = [
     accent: "#F5C860",
     shape: "chart",
   },
-] as const;
+];
 
 export const services = [
   {

@@ -62,7 +62,7 @@ export function BrandPartners() {
 
         {/* Sub-label */}
         <div className="text-center mt-10 text-sm text-white/40">
-          <span className="font-semibold text-white/60">24+ brands scaled</span>
+          <span className="font-semibold text-white/60">A glimpse of the 100+ brands we&apos;ve scaled</span>
           {" · "}
           ₹150Cr+ in client revenue driven
         </div>
