@@ -133,9 +133,13 @@ export function GrowthMethod() {
   }, []);
 
   return (
-    <section id="process" className="py-20 sm:py-24 lg:py-28 relative overflow-hidden">
-      {/* Ambient gold glow */}
-      <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-gold/[0.04] blur-[130px] pointer-events-none" />
+    <section id="process" className="py-20 sm:py-24 lg:py-28 relative">
+      {/* Ambient gold glow — wrapped in its own overflow-hidden container so
+          it never encloses the sticky child below (overflow-hidden on a
+          sticky ancestor breaks sticky positioning in all major browsers). */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-gold/[0.04] blur-[130px]" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-5 sm:px-6 relative">
         <div className="grid lg:grid-cols-[1.1fr,1fr] gap-10 lg:gap-16">

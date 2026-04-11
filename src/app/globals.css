@@ -26,6 +26,9 @@ body {
   background: var(--bg);
   color: #fafafa;
   font-feature-settings: "ss01", "cv11";
+  /* Clip horizontal overflow from ambient blurs without creating a scroll
+     container (overflow-x: hidden would break position:sticky descendants). */
+  overflow-x: clip;
 }
 
 body {
