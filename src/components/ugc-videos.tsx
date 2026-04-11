@@ -1,43 +1,62 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ugcVideos, type UGCVideo } from "@/lib/data";
 
 // =================================================================
 // UGC Card — phone-frame preview, autoplay muted, click to open modal
+// Video element is lazy-mounted: it only attaches to the DOM (and
+// therefore only starts loading bytes) once the card is within
+// ~200px of the viewport. Cuts initial page weight dramatically.
 // =================================================================
 
 function UGCCard({ item, onOpen }: { item: UGCVideo; onOpen: () => void }) {
+  const wrapperRef = useRef<HTMLButtonElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [mounted, setMounted] = useState(false);
+  const [visible, setVisible] = useState(false);
 
+  // Watch the wrapper — decide when to mount the <video> and when to play/pause
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const el = wrapperRef.current;
+    if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          video.play().catch(() => {
-            /* silently ignore autoplay block */
-          });
+          setMounted(true);
+          setVisible(true);
         } else {
-          video.pause();
+          setVisible(false);
         }
       },
-      { threshold: 0.3, rootMargin: "100px" },
+      { threshold: 0.15, rootMargin: "200px" },
     );
-    observer.observe(video);
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
+  // Play/pause the video once it exists
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (visible) {
+      v.play().catch(() => {
+        /* autoplay blocked — silently ignore */
+      });
+    } else {
+      v.pause();
+    }
+  }, [visible, mounted]);
+
   return (
-    <div className="shrink-0 w-56 sm:w-60 lg:w-[17rem] snap-center flex flex-col items-center gap-4">
-      <button
-        type="button"
-        onClick={onOpen}
-        aria-label={`Play ${item.brand} UGC video with sound`}
-        className="group relative w-full aspect-[9/16] rounded-[2rem] overflow-hidden border border-white/15 bg-black shadow-2xl hover:scale-[1.02] hover:border-gold/50 transition-all duration-300 cursor-pointer"
-      >
+    <button
+      ref={wrapperRef}
+      type="button"
+      onClick={onOpen}
+      aria-label="Play video with sound"
+      className="group shrink-0 relative w-56 sm:w-60 lg:w-[17rem] aspect-[9/16] snap-center rounded-[2rem] overflow-hidden border border-white/15 bg-black shadow-2xl hover:scale-[1.02] hover:border-gold/50 transition-all duration-300 cursor-pointer"
+    >
+      {mounted && (
         <video
           ref={videoRef}
           src={encodeURI(item.video)}
@@ -47,78 +66,50 @@ function UGCCard({ item, onOpen }: { item: UGCVideo; onOpen: () => void }) {
           preload="metadata"
           className="absolute inset-0 w-full h-full object-cover"
         />
+      )}
 
-        {/* Edge shadow for legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+      {/* Edge gradient for legibility */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
 
-        {/* Play overlay — appears on hover */}
-        <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          <div className="w-16 h-16 rounded-full bg-white/15 backdrop-blur-md border border-white/40 grid place-items-center shadow-2xl scale-75 group-hover:scale-100 transition-transform duration-300">
-            <svg
-              width="26"
-              height="26"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="text-white ml-1"
-            >
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </div>
-        </div>
-
-        {/* Muted indicator (top-right) */}
-        <div className="absolute top-3 right-3 px-2 py-1 rounded-full bg-black/65 backdrop-blur border border-white/10 text-[9px] text-white/85 flex items-center gap-1 font-semibold uppercase tracking-wider pointer-events-none">
+      {/* Play button overlay — appears on hover */}
+      <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        <div className="w-16 h-16 rounded-full bg-white/15 backdrop-blur-md border border-white/40 grid place-items-center shadow-2xl scale-75 group-hover:scale-100 transition-transform duration-300">
           <svg
-            width="10"
-            height="10"
+            width="26"
+            height="26"
             viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            fill="currentColor"
+            className="text-white ml-1"
           >
-            <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-            <line x1="22" x2="16" y1="9" y2="15" />
-            <line x1="16" x2="22" y1="9" y2="15" />
+            <path d="M8 5v14l11-7z" />
           </svg>
-          Tap for sound
         </div>
-      </button>
+      </div>
 
-      {/* Brand logo pill (Shop Now CTA) */}
-      <a
-        href={item.shopUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group inline-flex items-center gap-2 pl-3 pr-4 py-2 rounded-full bg-white text-black text-xs font-bold hover:scale-[1.05] active:scale-95 transition-transform duration-300 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)]"
-      >
-        <Image
-          src={item.logo}
-          alt={item.brand}
-          width={80}
-          height={20}
-          className="h-4 max-w-[72px] w-auto object-contain"
-        />
-        <span className="border-l border-black/15 pl-2 tracking-wide">Shop Now</span>
+      {/* Muted / tap-for-sound indicator */}
+      <div className="absolute top-3 right-3 px-2 py-1 rounded-full bg-black/65 backdrop-blur border border-white/10 text-[9px] text-white/85 flex items-center gap-1 font-semibold uppercase tracking-wider pointer-events-none">
         <svg
-          width="11"
-          height="11"
+          width="10"
+          height="10"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="3"
-          className="group-hover:translate-x-0.5 transition-transform duration-300"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
-          <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M11 5 6 9H2v6h4l5 4V5Z" />
+          <line x1="22" x2="16" y1="9" y2="15" />
+          <line x1="16" x2="22" y1="9" y2="15" />
         </svg>
-      </a>
-    </div>
+        Tap for sound
+      </div>
+    </button>
   );
 }
 
 // =================================================================
-// UGC Modal — unmuted, starts from beginning, with native controls
+// UGC Modal — video only, unmuted, starts from beginning
 // =================================================================
 
 function UGCModal({ item, onClose }: { item: UGCVideo; onClose: () => void }) {
@@ -131,7 +122,7 @@ function UGCModal({ item, onClose }: { item: UGCVideo; onClose: () => void }) {
     v.muted = false;
     v.volume = 1;
     v.play().catch(() => {
-      /* some browsers block unmuted autoplay — user can tap play on native controls */
+      /* user will tap the native play control if the browser blocks */
     });
   }, []);
 
@@ -154,7 +145,6 @@ function UGCModal({ item, onClose }: { item: UGCVideo; onClose: () => void }) {
       onClick={onClose}
       role="dialog"
       aria-modal="true"
-      aria-label={`${item.brand} video player`}
     >
       {/* Close button */}
       <button
@@ -177,58 +167,47 @@ function UGCModal({ item, onClose }: { item: UGCVideo; onClose: () => void }) {
         </svg>
       </button>
 
-      <div
-        className="relative flex flex-col gap-5 items-center animate-scale-in"
+      <video
+        ref={videoRef}
+        src={encodeURI(item.video)}
+        controls
+        loop
+        playsInline
         onClick={(e) => e.stopPropagation()}
-      >
-        <video
-          ref={videoRef}
-          src={encodeURI(item.video)}
-          controls
-          loop
-          playsInline
-          className="rounded-3xl object-cover border border-white/15 shadow-2xl bg-black max-h-[78vh] aspect-[9/16] w-auto"
-        />
-
-        <a
-          href={item.shopUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-gold text-black text-sm font-black uppercase tracking-wider hover:bg-gold-bright active:scale-95 transition-all duration-300 shadow-[0_0_50px_rgba(255,210,48,0.45)]"
-        >
-          <Image
-            src={item.logo}
-            alt={item.brand}
-            width={80}
-            height={20}
-            className="h-4 max-w-[72px] w-auto object-contain"
-          />
-          <span className="border-l border-black/25 pl-2.5">Shop {item.brand}</span>
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            className="group-hover:translate-x-0.5 transition-transform duration-300"
-          >
-            <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </a>
-      </div>
+        className="rounded-3xl object-cover border border-white/15 shadow-2xl bg-black max-h-[85vh] aspect-[9/16] w-auto animate-scale-in"
+      />
     </div>
   );
 }
 
 // =================================================================
-// Main section
+// Main section — section defers mounting cards until it's near viewport
 // =================================================================
 
 export function UGCVideos() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isNear, setIsNear] = useState(false);
+
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [scrollPct, setScrollPct] = useState(0);
+
+  // Defer mounting any cards until the whole section is close to viewport
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsNear(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const scroller = scrollerRef.current;
@@ -250,7 +229,10 @@ export function UGCVideos() {
   const activeDot = Math.round(scrollPct * (dotCount - 1));
 
   return (
-    <section className="py-20 sm:py-24 lg:py-28 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="py-20 sm:py-24 lg:py-28 relative overflow-hidden"
+    >
       {/* Ambient gold glow */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/[0.04] blur-[130px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gold/[0.03] blur-[120px] pointer-events-none" />
@@ -267,8 +249,7 @@ export function UGCVideos() {
               <span className="text-gradient-gold">Real conversions.</span>
             </h2>
             <p className="mt-4 sm:mt-5 text-[15px] sm:text-base text-white/55 max-w-lg">
-              Shoppable UGC reels built to scale. Tap any video to watch with sound — then click
-              through to the brand.
+              Shoppable UGC reels built to scale. Tap any video to watch with sound.
             </p>
           </div>
 
@@ -316,33 +297,43 @@ export function UGCVideos() {
         </div>
       </div>
 
-      {/* Carousel */}
-      <div
-        ref={scrollerRef}
-        className="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth px-5 sm:px-6 pb-6 scrollbar-hide"
-      >
-        {ugcVideos.map((item, i) => (
-          <UGCCard
-            key={`${item.brand}-${i}`}
-            item={item}
-            onOpen={() => setActiveIdx(i)}
-          />
-        ))}
-        {/* Trailing spacer so last card snaps in properly */}
-        <div className="shrink-0 w-1 sm:w-2" aria-hidden />
-      </div>
-
-      {/* Pagination dots */}
-      <div className="flex justify-center gap-2 mt-4 relative">
-        {Array.from({ length: dotCount }).map((_, i) => (
+      {/* Carousel (or placeholder until section is near viewport) */}
+      {isNear ? (
+        <>
           <div
-            key={i}
-            className={`h-1.5 rounded-full transition-all duration-500 ease-out ${
-              i === activeDot ? "w-6 bg-gold" : "w-1.5 bg-white/20"
-            }`}
-          />
-        ))}
-      </div>
+            ref={scrollerRef}
+            className="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth px-5 sm:px-6 pb-6 scrollbar-hide"
+          >
+            {ugcVideos.map((item, i) => (
+              <UGCCard
+                key={`${item.brand}-${i}`}
+                item={item}
+                onOpen={() => setActiveIdx(i)}
+              />
+            ))}
+            <div className="shrink-0 w-1 sm:w-2" aria-hidden />
+          </div>
+
+          {/* Pagination dots */}
+          <div className="flex justify-center gap-2 mt-4 relative">
+            {Array.from({ length: dotCount }).map((_, i) => (
+              <div
+                key={i}
+                className={`h-1.5 rounded-full transition-all duration-500 ease-out ${
+                  i === activeDot ? "w-6 bg-gold" : "w-1.5 bg-white/20"
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        // Reserve the scroll height so the page layout doesn't jump when cards mount
+        <div className="h-[430px] sm:h-[460px] lg:h-[520px]" aria-hidden>
+          <div className="h-full w-full grid place-items-center text-white/30 text-xs">
+            <div className="animate-pulse">Loading creatives…</div>
+          </div>
+        </div>
+      )}
 
       {/* Modal */}
       {activeIdx !== null && (
