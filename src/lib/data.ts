@@ -445,29 +445,36 @@ export const processSteps = [
   },
 ] as const;
 
-export const testimonials = [
+export type Testimonial = {
+  quote: string;
+  author: string;
+  role: string;
+  brand: string;
+  brandLogo?: string;
+};
+
+export const testimonials: Testimonial[] = [
   {
     quote:
-      "Working with Neuroid has been seamless and an outcome-driven partnership. Their ownership mindset and solution-focused approach make them a trusted extension of our team.",
-    author: "Founder",
-    brand: "D2C Beauty Brand",
+      "Brand visibility & engagement have been achieved at great scale. Neuroid will be in top of charts when it comes to recommendations.",
+    author: "Ishan Kukadia",
+    role: "Co-Founder",
+    brand: "Sylvi",
+    brandLogo: "/logos/10.png",
   },
   {
     quote:
-      "They combine strong technical capability with a deep understanding of the D2C ecosystem.",
-    author: "Marketing Head",
-    brand: "Fashion Label",
+      "They have been a great performance marketing team. The team has been very impactful, also has worked very hard to lift our performance.",
+    author: "Varshikha Jyoti",
+    role: "Founder",
+    brand: "Shyr",
   },
   {
     quote:
-      "Brand visibility and engagement have been achieved at great scale. Neuroid will be top of charts when it comes to recommendations.",
-    author: "Co-founder",
-    brand: "Lifestyle Brand",
+      "They combine strong technical capability with deep understanding of D2C ecosystem. Working with Neuroid has been seamless & an outcome-driven partnership. Their ownership mindset & solution-focused approach make them a trusted extension of our team.",
+    author: "Pulkit Tiwari",
+    role: "CMO",
+    brand: "Wooden Street",
+    brandLogo: "/logos/21.png",
   },
-  {
-    quote:
-      "They have been a great performance marketing team — very impactful and working hard to lift our performance.",
-    author: "Growth Lead",
-    brand: "Consumer Goods",
-  },
-] as const;
+];
