@@ -2,6 +2,7 @@ import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
 import { BrandPartners } from "@/components/brand-partners";
 import { CreativeWall } from "@/components/creative-wall";
+import { UGCVideos } from "@/components/ugc-videos";
 import { Services } from "@/components/services";
 import { InBusiness } from "@/components/in-business";
 import { Comparison } from "@/components/comparison-table";
@@ -37,6 +38,9 @@ export default function Home() {
         </Reveal>
         <Reveal>
           <Comparison />
+        </Reveal>
+        <Reveal>
+          <UGCVideos />
         </Reveal>
         <Reveal>
           <CaseStudies />

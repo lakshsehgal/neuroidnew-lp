@@ -80,6 +80,91 @@ export type Creative = {
   poster?: string;
 };
 
+// UGC creator videos for the shoppable reel section.
+// Each entry pairs a video with a brand logo and shop URL.
+// Update `shopUrl` to the actual brand website once confirmed.
+export type UGCVideo = {
+  video: string;
+  brand: string;
+  logo: string;
+  shopUrl: string;
+};
+
+export const ugcVideos: UGCVideo[] = [
+  {
+    video: "/creatives/videos/Sylvi Male-V1 (1).mp4",
+    brand: "Sylvi",
+    logo: "/logos/10.png",
+    shopUrl: "https://sylvi.in",
+  },
+  {
+    video: "/creatives/videos/NH_UGC_03_V1 (1) (1) (1).mp4",
+    brand: "NourishYou",
+    logo: "/logos/3.png",
+    shopUrl: "https://nourishyou.com",
+  },
+  {
+    video: "/creatives/videos/Yoho UGC 3 CollectionV1 (1) (1).mp4",
+    brand: "Yoho",
+    logo: "/logos/5.png",
+    shopUrl: "https://yoho.in",
+  },
+  {
+    video: "/creatives/videos/Gataca_UGC_04.mp4",
+    brand: "Gataca",
+    logo: "/logos/23.png",
+    shopUrl: "https://gataca.life",
+  },
+  {
+    video: "/creatives/videos/UGC_01_ Rugs Video (1) (1) (1).mp4",
+    brand: "Rust Orange",
+    logo: "/logos/12.png",
+    shopUrl: "https://rustorange.com",
+  },
+  {
+    video: "/creatives/videos/SSU 2 Arhan (1) (1).mp4",
+    brand: "Unstd",
+    logo: "/logos/9.png",
+    shopUrl: "https://unstd.in",
+  },
+  {
+    video: "/creatives/videos/H1 Gataca UGC 5 NMN V1 (1) (1).mp4",
+    brand: "Gataca",
+    logo: "/logos/23.png",
+    shopUrl: "https://gataca.life",
+  },
+  {
+    video: "/creatives/videos/varee CC4 mashup (1).mp4",
+    brand: "Vedansh Craft",
+    logo: "/logos/7.png",
+    shopUrl: "#",
+  },
+  {
+    video: "/creatives/videos/UGC 4_ DFL- Script 1 (1).mp4",
+    brand: "Deep Impact",
+    logo: "/logos/6.png",
+    shopUrl: "https://deepimpact.in",
+  },
+  {
+    video: "/creatives/videos/UGC 5 Rush hourV2 (1) (1).mp4",
+    brand: "Lifelong",
+    logo: "/logos/16.png",
+    shopUrl: "https://lifelongindia.com",
+  },
+  {
+    video: "/creatives/videos/UGC 6 _ PUW 2 _ Hook 1 (1) (1).mp4",
+    brand: "Kisah",
+    logo: "/logos/17.png",
+    shopUrl: "https://kisah.com",
+  },
+  {
+    video: "/creatives/videos/4bz__23RW3CKB5gyeRRsn (1) (2) copy.mp4",
+    brand: "Jewelsmars",
+    logo: "/logos/18.png",
+    shopUrl: "https://jewelsmars.com",
+  },
+];
+
 // Real media for the Creative Wall scrolling section.
 // Point at files dropped in /public/creatives/static and /public/creatives/videos.
 // The component URL-encodes paths, so spaces/parens/apostrophes in filenames are fine.
