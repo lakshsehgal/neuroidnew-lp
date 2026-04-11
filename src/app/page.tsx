@@ -7,7 +7,7 @@ import { Services } from "@/components/services";
 import { InBusiness } from "@/components/in-business";
 import { Comparison } from "@/components/comparison-table";
 import { CaseStudies } from "@/components/case-studies";
-import { Process } from "@/components/process";
+import { GrowthMethod } from "@/components/growth-method";
 import { Testimonials } from "@/components/testimonials";
 import { CTASection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
@@ -46,7 +46,7 @@ export default function Home() {
           <CaseStudies />
         </Reveal>
         <Reveal>
-          <Process />
+          <GrowthMethod />
         </Reveal>
         <Reveal>
           <Testimonials />
