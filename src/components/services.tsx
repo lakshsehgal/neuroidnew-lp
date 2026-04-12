@@ -38,28 +38,27 @@ export function Services() {
               >
                 <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-gold/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                {/* Screenshot backdrop — dimmed, full-bleed with heavy gradient */}
-                <div className="relative h-48 sm:h-56 overflow-hidden">
+                {/* Floating screen — rises from the surface, bottom clipped */}
+                <div className="relative h-52 sm:h-64 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#0e0e0e] to-[#090909]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,210,48,0.06),transparent_60%)]" />
+
                   {img && (
-                    <Image
-                      src={img}
-                      alt={s.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover object-center opacity-[0.35] group-hover:opacity-50 group-hover:scale-110 transition-all duration-[1.2s] ease-out"
-                      loading="lazy"
-                    />
+                    <div className="absolute left-[7%] right-[7%] sm:left-[5%] sm:right-[5%] top-8 sm:top-10 -bottom-1 rounded-t-xl overflow-hidden border border-b-0 border-white/15 shadow-[0_-8px_40px_rgba(0,0,0,0.6)] bg-white group-hover:top-5 sm:group-hover:top-7 transition-all duration-700 ease-out">
+                      <Image
+                        src={img}
+                        alt={s.title}
+                        fill
+                        sizes="(max-width: 768px) 90vw, 45vw"
+                        className="object-cover object-top"
+                        loading="lazy"
+                      />
+                    </div>
                   )}
-                  {/* Heavy gradient: bottom is solid black, fades to semi-transparent at top */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-black/60 to-black/20 pointer-events-none" />
-                  {/* Subtle gold glow at top */}
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,210,48,0.07),transparent_60%)] pointer-events-none" />
-                  {/* Number label */}
-                  <div className="absolute top-4 left-5 text-[11px] font-mono text-gold/80 tracking-wider z-10">
+
+                  <div className="absolute top-3 left-4 text-[11px] font-mono text-gold/80 tracking-wider z-10">
                     /{s.num}
                   </div>
-                  {/* Subtle gold hairline at bottom */}
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
                 </div>
 
                 <div className="relative p-7 sm:p-8">
