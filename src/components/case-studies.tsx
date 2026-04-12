@@ -1,128 +1,203 @@
-import { caseStudies } from "@/lib/data";
+"use client";
 
-// Per-case-study brand color presets for the visual header
-const presets = [
-  { from: "#2a1a3d", to: "#0f0a1a", accent: "#C58CF2" }, // Skincare (purple)
-  { from: "#3d0f1a", to: "#1a0810", accent: "#FF6B94" }, // Apparel (rose)
-  { from: "#2a1f05", to: "#1a1303", accent: "#FFDB52" }, // Jewelry (gold)
-  { from: "#0f2a1a", to: "#05170e", accent: "#7ED957" }, // F&B (green)
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+
+type CaseStudy = {
+  headline: string;
+  description: string;
+  metrics: { value: string; label: string }[];
+  image: string;
+};
+
+// Placeholder case studies — user will provide real data soon.
+const caseStudies: CaseStudy[] = [
+  {
+    headline: "₹5.6L to ₹86.7L monthly revenue in 10 months",
+    description:
+      "We helped a jewelry brand break through their growth plateau with a structured creative + media approach. Systematic testing of 60+ hooks per month, combined with full-funnel campaign architecture, drove a 15× revenue jump while maintaining healthy ROAS.",
+    metrics: [
+      { value: "15×", label: "Revenue Jump" },
+      { value: "4.3X", label: "ROAS Achieved" },
+    ],
+    image: "/illustrations/11.png",
+  },
+  {
+    headline: "₹5.18Cr revenue in 12 months for a fashion brand",
+    description:
+      "Scaled a women's apparel brand sustainably across four consecutive quarters. Diversified creative across UGCs, HighProds, and statics while optimizing the full conversion journey from ad click to checkout.",
+    metrics: [
+      { value: "5.7X", label: "Peak ROAS" },
+      { value: "₹5.18Cr", label: "Revenue Generated" },
+    ],
+    image: "/illustrations/8.png",
+  },
+  {
+    headline: "₹1.92Cr revenue in just 3 months — zero to one",
+    description:
+      "Took an F&B brand from zero online presence to profitable scale in under 90 days. Built the entire growth infrastructure from scratch — media, creative, landing pages, and retention flows.",
+    metrics: [
+      { value: "2.29X", label: "ROAS from Day One" },
+      { value: "₹1.92Cr", label: "In 3 Months" },
+    ],
+    image: "/illustrations/7.png",
+  },
+  {
+    headline: "₹1.5Cr+ MRR run-rate for a skincare brand",
+    description:
+      "Maintained a ₹1.5Cr+ monthly recurring revenue run-rate at scale by continuously refreshing creative, optimizing audience segments, and building retention flows that compounded LTV.",
+    metrics: [
+      { value: "2.3X", label: "ROAS at Scale" },
+      { value: "₹1.5Cr+", label: "Monthly Run-Rate" },
+    ],
+    image: "/illustrations/9.png",
+  },
 ];
 
-function SparkChart({ color }: { color: string }) {
-  // Upward-trending sparkline (same shape for all, color varies)
-  return (
-    <svg
-      viewBox="0 0 200 80"
-      preserveAspectRatio="none"
-      className="absolute inset-0 w-full h-full"
-    >
-      <defs>
-        <linearGradient id={`fill-${color.replace("#", "")}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={color} stopOpacity="0.35" />
-          <stop offset="100%" stopColor={color} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M0,68 L25,63 L50,52 L75,58 L100,42 L125,28 L150,22 L175,12 L200,5 L200,80 L0,80 Z"
-        fill={`url(#fill-${color.replace("#", "")})`}
-      />
-      <path
-        d="M0,68 L25,63 L50,52 L75,58 L100,42 L125,28 L150,22 L175,12 L200,5"
-        stroke={color}
-        strokeWidth="2.5"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="200" cy="5" r="3.5" fill={color} />
-      <circle cx="200" cy="5" r="7" fill={color} opacity="0.3" />
-    </svg>
-  );
-}
-
 export function CaseStudies() {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [scrollPct, setScrollPct] = useState(0);
+
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    const onScroll = () => {
+      const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+      setScrollPct(maxScroll > 0 ? scroller.scrollLeft / maxScroll : 0);
+    };
+    onScroll();
+    scroller.addEventListener("scroll", onScroll, { passive: true });
+    return () => scroller.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollBy = (delta: number) => {
+    scrollerRef.current?.scrollBy({ left: delta, behavior: "smooth" });
+  };
+
+  const dotCount = caseStudies.length;
+  const activeDot = Math.round(scrollPct * (dotCount - 1));
+
   return (
     <section id="work" className="py-20 sm:py-24 lg:py-28 relative">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-5 sm:gap-6">
-          <div className="max-w-2xl">
-            <div className="inline-block text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-gold mb-3 sm:mb-4 font-semibold">
-              / Proof in numbers
-            </div>
-            <h2 className="text-[2rem] sm:text-5xl lg:text-6xl font-black leading-[1] tracking-[-0.02em]">
-              Results that <span className="text-gradient-gold">compound.</span>
-            </h2>
-          </div>
-          <p className="text-[15px] sm:text-base text-white/55 max-w-sm">
-            We measure success in MRR run-rates, ROAS holds at scale, and months from zero to profitable.
-          </p>
+      {/* Section header */}
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 mb-10 sm:mb-14">
+        <div className="inline-block text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-gold mb-3 sm:mb-4 font-semibold">
+          / Case Studies
         </div>
+        <h2 className="text-[2rem] sm:text-5xl lg:text-6xl font-black leading-[1] tracking-[-0.02em]">
+          Results that
+          <br />
+          <span className="text-gradient-gold">speak for themselves.</span>
+        </h2>
+      </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {caseStudies.map((c, i) => {
-            const preset = presets[i % presets.length];
-            return (
-              <div
-                key={i}
-                className="group relative rounded-3xl border border-white/[0.08] bg-gradient-to-b from-white/[0.03] to-transparent hover:border-gold/40 transition-colors overflow-hidden"
-              >
-                <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-gold/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+      {/* Scrollable cards */}
+      <div
+        ref={scrollerRef}
+        className="flex gap-5 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-5 sm:px-6 pb-8 scrollbar-hide"
+      >
+        {caseStudies.map((cs, i) => (
+          <div
+            key={i}
+            className="shrink-0 w-[88vw] sm:w-[85vw] max-w-6xl snap-center rounded-[2rem] bg-white overflow-hidden"
+          >
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 p-6 sm:p-10 lg:p-14">
+              {/* Left: dashboard screenshot */}
+              <div className="relative rounded-2xl overflow-hidden border border-gray-200 bg-gray-50 aspect-[4/3]">
+                <Image
+                  src={cs.image}
+                  alt={cs.headline}
+                  fill
+                  sizes="(max-width: 768px) 85vw, 42vw"
+                  className="object-cover object-center"
+                  loading="lazy"
+                />
+              </div>
 
-                {/* Visual header */}
-                <div
-                  className="relative h-32 overflow-hidden"
-                  style={{ background: `linear-gradient(135deg, ${preset.from}, ${preset.to})` }}
-                >
-                  <SparkChart color={preset.accent} />
-                  <div className="absolute top-3 left-4 flex items-center gap-2">
-                    <div
-                      className="w-1.5 h-1.5 rounded-full animate-pulse"
-                      style={{ background: preset.accent }}
-                    />
-                    <div
-                      className="text-[10px] font-bold uppercase tracking-[0.15em]"
-                      style={{ color: preset.accent }}
-                    >
-                      {c.tag}
-                    </div>
-                  </div>
-                  <div className="absolute top-3 right-4 flex items-center gap-1 text-[10px] font-semibold" style={{ color: preset.accent }}>
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                      <path d="M7 17L17 7M17 17V7H7" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    Scaling
-                  </div>
-                </div>
-
-                <div className="relative p-6">
-                  <div className="text-xl lg:text-[1.45rem] font-black text-white mb-2 leading-[1.1] tracking-tight">
-                    {c.headline}
-                  </div>
-                  <div className="text-sm text-white/45 mb-6 leading-relaxed">{c.note}</div>
-
-                  <div className="pt-5 border-t border-white/10 flex items-end justify-between">
-                    <div>
-                      <div className="text-[10px] text-white/40 uppercase tracking-[0.15em] mb-1">
-                        {c.metricLabel}
+              {/* Right: content */}
+              <div className="flex flex-col justify-center">
+                <h3 className="text-2xl sm:text-3xl lg:text-[2.75rem] font-black text-black tracking-tight leading-[1.05] mb-4 sm:mb-6">
+                  {cs.headline}
+                </h3>
+                <p className="text-gray-600 text-[15px] sm:text-base leading-relaxed mb-8 sm:mb-10">
+                  {cs.description}
+                </p>
+                <div className="flex gap-8 sm:gap-12">
+                  {cs.metrics.map((m) => (
+                    <div key={m.label}>
+                      <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-black tracking-tight">
+                        {m.value}
                       </div>
-                      <div className="text-3xl font-black text-gradient-gold leading-none">{c.metric}</div>
+                      <div className="text-xs sm:text-sm text-gray-500 mt-1">
+                        {m.label}
+                      </div>
                     </div>
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      className="text-white/30 group-hover:text-gold group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"
-                    >
-                      <path d="M7 17L17 7M7 7h10v10" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
+                  ))}
                 </div>
               </div>
-            );
-          })}
+            </div>
+          </div>
+        ))}
+        {/* Trailing spacer */}
+        <div className="shrink-0 w-2" aria-hidden />
+      </div>
+
+      {/* Pagination dots + arrows */}
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 flex items-center justify-between mt-4 sm:mt-6">
+        {/* Dots */}
+        <div className="flex gap-2">
+          {Array.from({ length: dotCount }).map((_, i) => (
+            <div
+              key={i}
+              className={`h-2 rounded-full transition-all duration-500 ease-out ${
+                i === activeDot
+                  ? "w-8 bg-white"
+                  : "w-2 bg-white/25"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Arrow buttons */}
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => scrollBy(-window.innerWidth * 0.85)}
+            aria-label="Previous case study"
+            className="w-12 h-12 rounded-full border-2 border-gold/60 bg-transparent grid place-items-center text-white/80 hover:bg-gold hover:text-black hover:border-gold active:scale-95 transition-all duration-300"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollBy(window.innerWidth * 0.85)}
+            aria-label="Next case study"
+            className="w-12 h-12 rounded-full border-2 border-gold/60 bg-gold grid place-items-center text-black hover:bg-gold-bright hover:border-gold-bright active:scale-95 transition-all duration-300"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>
