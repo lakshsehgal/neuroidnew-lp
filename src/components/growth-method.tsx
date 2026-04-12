@@ -24,7 +24,7 @@ const steps: GrowthStep[] = [
       "Audience segmentation, budget allocation & channel mix strategy",
       "Data-led growth map aligned with profitability, AOV & LTV goals",
     ],
-    image: "/creatives/static/Artboard 1tu.png",
+    image: "/illustrations/9.png",
   },
   {
     num: "02",
@@ -35,7 +35,7 @@ const steps: GrowthStep[] = [
       "Systematic creative production & iterative testing at volume",
       "Performance-aligned feedback loop between creative & media teams",
     ],
-    image: "/creatives/static/CC100_Review Static_Static.jpg",
+    image: "/illustrations/7.png",
   },
   {
     num: "03",
@@ -46,7 +46,7 @@ const steps: GrowthStep[] = [
       "Conversion journey optimization from ad click to checkout",
       "Continuous bid, audience & budget optimization to maximize MER/ROAS",
     ],
-    image: "/creatives/static/CC3  BFCM Static 02_Sq.jpg",
+    image: "/illustrations/8.png",
   },
   {
     num: "04",
