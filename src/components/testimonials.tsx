@@ -2,8 +2,6 @@ import Image from "next/image";
 import { testimonials, type Testimonial } from "@/lib/data";
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
-  const initial = testimonial.author.charAt(0);
-
   return (
     <div className="group relative p-7 sm:p-8 rounded-3xl border border-white/[0.08] bg-gradient-to-b from-white/[0.025] to-transparent hover:border-gold/25 transition-colors duration-500 flex flex-col">
       {/* Big decorative quote mark */}
@@ -21,12 +19,22 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         {testimonial.quote}
       </p>
 
-      {/* Footer row: author + brand */}
+      {/* Footer row: photo + author + brand logo */}
       <div className="pt-6 border-t border-white/10 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold/30 to-gold/10 border border-gold/40 grid place-items-center text-gold font-black text-sm shrink-0">
-            {initial}
-          </div>
+          {testimonial.photo ? (
+            <Image
+              src={testimonial.photo}
+              alt={testimonial.author}
+              width={44}
+              height={44}
+              className="w-11 h-11 rounded-full object-cover border border-white/15 shrink-0"
+            />
+          ) : (
+            <div className="w-11 h-11 rounded-full bg-gradient-to-br from-gold/30 to-gold/10 border border-gold/40 grid place-items-center text-gold font-black text-sm shrink-0">
+              {testimonial.author.charAt(0)}
+            </div>
+          )}
           <div className="min-w-0">
             <div className="font-bold text-sm text-white truncate">{testimonial.author}</div>
             <div className="text-xs text-white/45 truncate">{testimonial.role}</div>

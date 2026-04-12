@@ -451,30 +451,34 @@ export type Testimonial = {
   role: string;
   brand: string;
   brandLogo?: string;
+  photo?: string;
 };
 
 export const testimonials: Testimonial[] = [
-  {
-    quote:
-      "Brand visibility & engagement have been achieved at great scale. Neuroid will be in top of charts when it comes to recommendations.",
-    author: "Ishan Kukadia",
-    role: "Co-Founder",
-    brand: "Sylvi",
-    brandLogo: "/logos/10.png",
-  },
   {
     quote:
       "They have been a great performance marketing team. The team has been very impactful, also has worked very hard to lift our performance.",
     author: "Varshikha Jyoti",
     role: "Founder",
     brand: "Shyr",
+    photo: "/testimonials/varshikha.jpeg",
   },
   {
     quote:
-      "They combine strong technical capability with deep understanding of D2C ecosystem. Working with Neuroid has been seamless & an outcome-driven partnership. Their ownership mindset & solution-focused approach make them a trusted extension of our team.",
+      "They combine strong technical capability with deep understanding of D2C ecosystem. Working with Neuroid has been seamless & an outcome driven partnership. Their ownership mindset & solution focussed approach make them a trusted extension of our team.",
     author: "Pulkit Tiwari",
     role: "CMO",
     brand: "Wooden Street",
     brandLogo: "/logos/21.png",
+    photo: "/testimonials/pulkit.png",
+  },
+  {
+    quote:
+      "Brand visibility & engagement have been achieved at great scale. neuroid will be in top of charts when it comes to recommendations.",
+    author: "Ishan Kukadia",
+    role: "Co-Founder",
+    brand: "Sylvi",
+    brandLogo: "/logos/10.png",
+    photo: "/testimonials/ishan.png",
   },
 ];
