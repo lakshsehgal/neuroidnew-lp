@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { brands } from "@/lib/data";
 
 type Brand = { name: string; src: string };
@@ -20,17 +23,36 @@ function LogoPill({ brand }: { brand: Brand }) {
 }
 
 export function BrandPartners() {
-  // Split 24 brands into two rows of 12 — priority brands land in row 1
+  const sectionRef = useRef<HTMLElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  // Only render the 48 logo images once the section is near the viewport
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMounted(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   const row1 = brands.slice(0, 12);
   const row2 = brands.slice(12, 24);
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 relative overflow-hidden">
-      {/* Ambient gold glows */}
+    <section ref={sectionRef} className="py-16 sm:py-20 lg:py-24 relative overflow-hidden">
+      {/* Ambient gold glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gold/[0.04] blur-[120px] rounded-full pointer-events-none" />
 
       <div className="relative">
-        {/* Header */}
+        {/* Header — always rendered */}
         <div className="max-w-4xl mx-auto px-5 sm:px-6 text-center mb-10 sm:mb-14">
           <div className="inline-block text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-white/55 mb-4 sm:mb-5 px-3.5 sm:px-4 py-1.5 rounded-full border border-white/15 bg-white/[0.03] backdrop-blur font-semibold">
             D2C Brands
@@ -42,23 +64,29 @@ export function BrandPartners() {
           </h2>
         </div>
 
-        {/* Row 1 — scroll right-to-left */}
-        <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] mb-5">
-          <div className="flex gap-4 sm:gap-5 animate-marquee w-max">
-            {[...row1, ...row1].map((b, i) => (
-              <LogoPill key={`r1-${i}-${b.name}`} brand={b} />
-            ))}
-          </div>
-        </div>
+        {mounted ? (
+          <>
+            {/* Row 1 — scroll right-to-left */}
+            <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] mb-5">
+              <div className="flex gap-4 sm:gap-5 animate-marquee w-max">
+                {[...row1, ...row1].map((b, i) => (
+                  <LogoPill key={`r1-${i}-${b.name}`} brand={b} />
+                ))}
+              </div>
+            </div>
 
-        {/* Row 2 — scroll left-to-right (opposite direction) */}
-        <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
-          <div className="flex gap-4 sm:gap-5 animate-marquee-reverse w-max">
-            {[...row2, ...row2].map((b, i) => (
-              <LogoPill key={`r2-${i}-${b.name}`} brand={b} />
-            ))}
-          </div>
-        </div>
+            {/* Row 2 — scroll left-to-right (opposite direction) */}
+            <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+              <div className="flex gap-4 sm:gap-5 animate-marquee-reverse w-max">
+                {[...row2, ...row2].map((b, i) => (
+                  <LogoPill key={`r2-${i}-${b.name}`} brand={b} />
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="h-[200px] sm:h-[240px]" aria-hidden />
+        )}
 
         {/* Sub-label */}
         <div className="text-center mt-10 text-sm text-white/40">

@@ -36,7 +36,7 @@ function LazyVideoTile({ src }: { src: string }) {
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="none"
       className="w-full h-auto rounded-xl block border border-white/[0.06] bg-black"
     />
   );
