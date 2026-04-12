@@ -2,11 +2,12 @@ import Image from "next/image";
 import { services } from "@/lib/data";
 
 // Map each service to a real screenshot from /public/illustrations
+// Chosen for how well they crop into a LANDSCAPE floating frame.
 const serviceImages: Record<string, string> = {
-  "01": "/illustrations/11.png", // Performance Marketing → Shopify/Google Ads dashboard
-  "02": "/illustrations/12.png", // UGC & Creatives → Social collage (TikTok, YouTube, creators)
+  "01": "/illustrations/8.png",  // Performance Marketing → Meta Ads Manager line chart (wide, fills nicely)
+  "02": "/illustrations/7.png",  // UGC & Creatives → 4-panel creative analytics (2x2 grid fills landscape)
   "03": "/illustrations/6.png",  // Retention Marketing → Creative Insights + audience analytics
-  "04": "/illustrations/10.png", // CRO & Landing Pages → Mobile CRO screenshots (cart, PDP)
+  "04": "/illustrations/10.png", // CRO & Landing Pages → Mobile CRO screenshots (3 phones)
 };
 
 export function Services() {

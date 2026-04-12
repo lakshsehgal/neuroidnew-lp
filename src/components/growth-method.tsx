@@ -35,7 +35,7 @@ const steps: GrowthStep[] = [
       "Systematic creative production & iterative testing at volume",
       "Performance-aligned feedback loop between creative & media teams",
     ],
-    image: "/illustrations/7.png",
+    image: "/illustrations/12.png",
   },
   {
     num: "03",
@@ -46,7 +46,7 @@ const steps: GrowthStep[] = [
       "Conversion journey optimization from ad click to checkout",
       "Continuous bid, audience & budget optimization to maximize MER/ROAS",
     ],
-    image: "/illustrations/8.png",
+    image: "/illustrations/11.png",
   },
   {
     num: "04",
