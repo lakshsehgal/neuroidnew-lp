@@ -44,13 +44,13 @@ export function Services() {
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,210,48,0.06),transparent_60%)]" />
 
                   {img && (
-                    <div className="absolute left-[7%] right-[7%] sm:left-[5%] sm:right-[5%] top-8 sm:top-10 -bottom-1 rounded-t-xl overflow-hidden border border-b-0 border-white/15 shadow-[0_-8px_40px_rgba(0,0,0,0.6)] bg-white group-hover:top-5 sm:group-hover:top-7 transition-all duration-700 ease-out">
+                    <div className="absolute left-[7%] right-[7%] sm:left-[5%] sm:right-[5%] top-8 sm:top-10 -bottom-1 rounded-t-xl overflow-hidden border border-b-0 border-white/15 shadow-[0_-8px_40px_rgba(0,0,0,0.6)] bg-[#f8f8f8] group-hover:top-5 sm:group-hover:top-7 transition-all duration-700 ease-out">
                       <Image
                         src={img}
                         alt={s.title}
                         fill
                         sizes="(max-width: 768px) 90vw, 45vw"
-                        className="object-cover object-top"
+                        className="object-cover object-center"
                         loading="lazy"
                       />
                     </div>
