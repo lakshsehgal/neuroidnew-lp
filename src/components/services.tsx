@@ -38,19 +38,21 @@ export function Services() {
               >
                 <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-gold/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                {/* Screenshot band */}
-                <div className="relative h-44 sm:h-52 border-b border-white/[0.06] overflow-hidden bg-black/40">
+                {/* Screenshot band — image shown in full, contained with padding */}
+                <div className="relative h-52 sm:h-64 border-b border-white/[0.06] overflow-hidden bg-black/50">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,210,48,0.05),transparent_70%)]" />
                   {img && (
-                    <Image
-                      src={img}
-                      alt={s.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover object-top opacity-90 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700"
-                      loading="lazy"
-                    />
+                    <div className="absolute inset-3 sm:inset-5 group-hover:inset-2 sm:group-hover:inset-4 transition-all duration-700">
+                      <Image
+                        src={img}
+                        alt={s.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+                        loading="lazy"
+                      />
+                    </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10 pointer-events-none" />
                   <div className="absolute top-3 left-4 text-[11px] font-mono text-gold/80 tracking-wider z-10">
                     /{s.num}
                   </div>
