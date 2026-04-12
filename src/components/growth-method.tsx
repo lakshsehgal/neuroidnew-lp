@@ -8,12 +8,12 @@ type GrowthStep = {
   title: string;
   desc: string;
   bullets: string[];
-  image: string;
+  media: string;
+  type: "image" | "video";
 };
 
-// 6-step growth method. Images use files already in /public/creatives/static.
-// Swap the image paths whenever you want to show different creatives alongside
-// a given step — that's the only thing you ever need to edit.
+// 6 steps — alternating static creatives and silent video loops.
+// Videos play muted as GIF-like previews (no audio track needed).
 const steps: GrowthStep[] = [
   {
     num: "01",
@@ -24,7 +24,8 @@ const steps: GrowthStep[] = [
       "Audience segmentation, budget allocation & channel mix strategy",
       "Data-led growth map aligned with profitability, AOV & LTV goals",
     ],
-    image: "/illustrations/9.png",
+    media: "/creatives/static/CC94_Bestsellers_Static-03.jpg",
+    type: "image",
   },
   {
     num: "02",
@@ -35,7 +36,8 @@ const steps: GrowthStep[] = [
       "Systematic creative production & iterative testing at volume",
       "Performance-aligned feedback loop between creative & media teams",
     ],
-    image: "/illustrations/12.png",
+    media: "/creatives/videos/Sylvi Male-V1 (1).mp4",
+    type: "video",
   },
   {
     num: "03",
@@ -46,7 +48,8 @@ const steps: GrowthStep[] = [
       "Conversion journey optimization from ad click to checkout",
       "Continuous bid, audience & budget optimization to maximize MER/ROAS",
     ],
-    image: "/illustrations/11.png",
+    media: "/creatives/static/CC14 _ Mirage _ Static -01.jpg",
+    type: "image",
   },
   {
     num: "04",
@@ -57,7 +60,8 @@ const steps: GrowthStep[] = [
       "Repurposing top-performing assets across funnel stages & channels",
       "Creative analytics guiding optimization & strategic decision-making",
     ],
-    image: "/creatives/static/OPT 1.jpg",
+    media: "/creatives/videos/Gataca_UGC_04.mp4",
+    type: "video",
   },
   {
     num: "05",
@@ -68,7 +72,8 @@ const steps: GrowthStep[] = [
       "Segmentation-led retention strategy for high-intent cohorts",
       "Cohesive creative + messaging parity across acquisition & retention",
     ],
-    image: "/creatives/static/Nourish you milk 4X5 (2).png",
+    media: "/creatives/static/Nourish you milk 4X5 (2).png",
+    type: "image",
   },
   {
     num: "06",
@@ -79,7 +84,8 @@ const steps: GrowthStep[] = [
       "Bridging content–media gaps to maintain efficiency & growth velocity",
       "Strategic consulting on long-term brand positioning & revenue architecture",
     ],
-    image: "/creatives/static/Youglo Glitter BFCM Sale V1.png",
+    media: "/creatives/videos/Yoho UGC 3 CollectionV1 (1) (1).mp4",
+    type: "video",
   },
 ];
 
@@ -106,6 +112,19 @@ function CheckIcon({ active }: { active: boolean }) {
 export function GrowthMethod() {
   const [activeIdx, setActiveIdx] = useState(0);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  // Play active video, pause all others
+  useEffect(() => {
+    videoRefs.current.forEach((v, i) => {
+      if (!v) return;
+      if (i === activeIdx) {
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
+  }, [activeIdx]);
 
   // Track which step is in the "active zone" (middle 20% of viewport)
   useEffect(() => {
@@ -189,16 +208,28 @@ export function GrowthMethod() {
                     }}
                     className="relative lg:min-h-[40vh]"
                   >
-                    {/* Mobile-only inline image (desktop uses sticky image on the right) */}
+                    {/* Mobile-only inline media (desktop uses sticky card on the right) */}
                     <div className="lg:hidden mb-6 relative rounded-3xl overflow-hidden border border-white/10 aspect-[4/5] bg-black">
-                      <Image
-                        src={encodeURI(step.image)}
-                        alt={step.title}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 0"
-                        className="object-cover"
-                        loading={i === 0 ? "eager" : "lazy"}
-                      />
+                      {step.type === "video" ? (
+                        <video
+                          src={encodeURI(step.media)}
+                          muted
+                          autoPlay
+                          loop
+                          playsInline
+                          preload="metadata"
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                      ) : (
+                        <Image
+                          src={encodeURI(step.media)}
+                          alt={step.title}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 0"
+                          className="object-cover"
+                          loading={i === 0 ? "eager" : "lazy"}
+                        />
+                      )}
                       <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/70 backdrop-blur border border-white/20 text-[10px] font-bold text-white/90 uppercase tracking-wider">
                         Step {i + 1} / {steps.length}
                       </div>
@@ -244,7 +275,7 @@ export function GrowthMethod() {
           <div className="hidden lg:block">
             <div className="sticky top-28">
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 bg-black shadow-2xl">
-                {/* All images stacked, crossfade based on activeIdx */}
+                {/* All media stacked — crossfade based on activeIdx */}
                 {steps.map((step, i) => (
                   <div
                     key={step.num}
@@ -256,14 +287,28 @@ export function GrowthMethod() {
                         "opacity 900ms cubic-bezier(0.22, 1, 0.36, 1), transform 1200ms cubic-bezier(0.22, 1, 0.36, 1)",
                     }}
                   >
-                    <Image
-                      src={encodeURI(step.image)}
-                      alt={step.title}
-                      fill
-                      sizes="(max-width: 1024px) 0, 45vw"
-                      className="object-cover"
-                      priority={i === 0}
-                    />
+                    {step.type === "video" ? (
+                      <video
+                        ref={(el) => {
+                          videoRefs.current[i] = el;
+                        }}
+                        src={encodeURI(step.media)}
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    ) : (
+                      <Image
+                        src={encodeURI(step.media)}
+                        alt={step.title}
+                        fill
+                        sizes="(max-width: 1024px) 0, 45vw"
+                        className="object-cover"
+                        priority={i === 0}
+                      />
+                    )}
                   </div>
                 ))}
 
