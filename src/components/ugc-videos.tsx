@@ -1,79 +1,35 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ugcVideos, type UGCVideo } from "@/lib/data";
+import { ugcVideoIds } from "@/lib/data";
 
 // =================================================================
-// UGC Card — phone-frame preview, autoplay muted, click to open modal
-// Video element is lazy-mounted: it only attaches to the DOM (and
-// therefore only starts loading bytes) once the card is within
-// ~200px of the viewport. Cuts initial page weight dramatically.
+// UGC Card — YouTube thumbnail preview, click to open iframe modal
 // =================================================================
 
-function UGCCard({ item, onOpen }: { item: UGCVideo; onOpen: () => void }) {
-  const wrapperRef = useRef<HTMLButtonElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [mounted, setMounted] = useState(false);
-  const [visible, setVisible] = useState(false);
-
-  // Watch the wrapper — decide when to mount the <video> and when to play/pause
-  useEffect(() => {
-    const el = wrapperRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setMounted(true);
-          setVisible(true);
-        } else {
-          setVisible(false);
-        }
-      },
-      { threshold: 0.15, rootMargin: "200px" },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  // Play/pause the video once it exists
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (visible) {
-      v.play().catch(() => {
-        /* autoplay blocked — silently ignore */
-      });
-    } else {
-      v.pause();
-    }
-  }, [visible, mounted]);
-
+function UGCCard({ videoId, onOpen }: { videoId: string; onOpen: () => void }) {
   return (
     <button
-      ref={wrapperRef}
       type="button"
       onClick={onOpen}
-      aria-label="Play video with sound"
+      aria-label="Play UGC video"
       className="group shrink-0 relative w-56 sm:w-60 lg:w-[17rem] aspect-[9/16] snap-center rounded-[2rem] overflow-hidden border border-white/15 bg-black shadow-2xl hover:scale-[1.02] hover:border-gold/50 transition-all duration-300 cursor-pointer"
     >
-      {mounted && (
-        <video
-          ref={videoRef}
-          src={encodeURI(item.video)}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      )}
+      {/* YouTube thumbnail — lightweight image instead of streaming video */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`}
+        alt=""
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
 
-      {/* Edge gradient for legibility */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+      {/* Bottom gradient for depth */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
-      {/* Play button overlay — appears on hover */}
-      <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-        <div className="w-16 h-16 rounded-full bg-white/15 backdrop-blur-md border border-white/40 grid place-items-center shadow-2xl scale-75 group-hover:scale-100 transition-transform duration-300">
+      {/* Centered play button — always visible */}
+      <div className="absolute inset-0 grid place-items-center pointer-events-none">
+        <div className="w-16 h-16 rounded-full bg-black/40 backdrop-blur-md border border-white/30 grid place-items-center shadow-2xl group-hover:scale-110 group-hover:bg-black/60 transition-all duration-300">
           <svg
             width="26"
             height="26"
@@ -86,46 +42,28 @@ function UGCCard({ item, onOpen }: { item: UGCVideo; onOpen: () => void }) {
         </div>
       </div>
 
-      {/* Muted / tap-for-sound indicator */}
-      <div className="absolute top-3 right-3 px-2 py-1 rounded-full bg-black/65 backdrop-blur border border-white/10 text-[9px] text-white/85 flex items-center gap-1 font-semibold uppercase tracking-wider pointer-events-none">
-        <svg
-          width="10"
-          height="10"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-          <line x1="22" x2="16" y1="9" y2="15" />
-          <line x1="16" x2="22" y1="9" y2="15" />
+      {/* Top-right badge */}
+      <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/65 backdrop-blur border border-white/10 text-[9px] text-white/90 flex items-center gap-1 font-semibold uppercase tracking-wider pointer-events-none">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" className="text-red-500">
+          <path d="M23.5 6.5a3 3 0 00-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 00.5 6.5S0 8.5 0 10.5v2c0 2 .5 4 .5 4a3 3 0 002.1 2.1c1.9.4 9.4.4 9.4.4s7.5 0 9.4-.4a3 3 0 002.1-2.1s.5-2 .5-4v-2c0-2-.5-4-.5-4zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
         </svg>
-        Tap for sound
+        Shorts
       </div>
     </button>
   );
 }
 
 // =================================================================
-// UGC Modal — video only, unmuted, starts from beginning
+// UGC Modal — YouTube iframe (unmuted, plays immediately)
 // =================================================================
 
-function UGCModal({ item, onClose }: { item: UGCVideo; onClose: () => void }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.currentTime = 0;
-    v.muted = false;
-    v.volume = 1;
-    v.play().catch(() => {
-      /* user will tap the native play control if the browser blocks */
-    });
-  }, []);
-
+function UGCModal({
+  videoId,
+  onClose,
+}: {
+  videoId: string;
+  onClose: () => void;
+}) {
   useEffect(() => {
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -167,32 +105,35 @@ function UGCModal({ item, onClose }: { item: UGCVideo; onClose: () => void }) {
         </svg>
       </button>
 
-      <video
-        ref={videoRef}
-        src={encodeURI(item.video)}
-        controls
-        loop
-        playsInline
+      {/* YouTube iframe */}
+      <div
+        className="animate-scale-in w-full max-w-sm sm:max-w-md"
         onClick={(e) => e.stopPropagation()}
-        className="rounded-3xl object-cover border border-white/15 shadow-2xl bg-black max-h-[85vh] aspect-[9/16] w-auto animate-scale-in"
-      />
+      >
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&playsinline=1&rel=0&modestbranding=1`}
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
+          title="UGC Video"
+          className="w-full aspect-[9/16] rounded-3xl border border-white/15 shadow-2xl bg-black"
+        />
+      </div>
     </div>
   );
 }
 
 // =================================================================
-// Main section — section defers mounting cards until it's near viewport
+// Main section
 // =================================================================
 
 export function UGCVideos() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isNear, setIsNear] = useState(false);
-
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [scrollPct, setScrollPct] = useState(0);
 
-  // Defer mounting any cards until the whole section is close to viewport
+  // Defer mounting cards until section is near viewport
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -219,7 +160,7 @@ export function UGCVideos() {
     onScroll();
     scroller.addEventListener("scroll", onScroll, { passive: true });
     return () => scroller.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isNear]);
 
   const scrollBy = (delta: number) => {
     scrollerRef.current?.scrollBy({ left: delta, behavior: "smooth" });
@@ -249,7 +190,7 @@ export function UGCVideos() {
               <span className="text-gradient-gold">Real conversions.</span>
             </h2>
             <p className="mt-4 sm:mt-5 text-[15px] sm:text-base text-white/55 max-w-lg">
-              Shoppable UGC reels built to scale. Tap any video to watch with sound.
+              Tap any video to watch with sound — UGC reels built to convert.
             </p>
           </div>
 
@@ -261,16 +202,7 @@ export function UGCVideos() {
               aria-label="Previous"
               className="w-11 h-11 rounded-full border border-white/15 bg-white/[0.03] grid place-items-center text-white/70 hover:text-white hover:border-white/30 hover:bg-white/[0.06] active:scale-95 transition-all"
             >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="15 18 9 12 15 6" />
               </svg>
             </button>
@@ -280,16 +212,7 @@ export function UGCVideos() {
               aria-label="Next"
               className="w-11 h-11 rounded-full border border-white/15 bg-white/[0.03] grid place-items-center text-white/70 hover:text-white hover:border-white/30 hover:bg-white/[0.06] active:scale-95 transition-all"
             >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="9 18 15 12 9 6" />
               </svg>
             </button>
@@ -297,17 +220,17 @@ export function UGCVideos() {
         </div>
       </div>
 
-      {/* Carousel (or placeholder until section is near viewport) */}
+      {/* Carousel */}
       {isNear ? (
         <>
           <div
             ref={scrollerRef}
             className="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth px-5 sm:px-6 pb-6 scrollbar-hide"
           >
-            {ugcVideos.map((item, i) => (
+            {ugcVideoIds.map((id, i) => (
               <UGCCard
-                key={`${item.brand}-${i}`}
-                item={item}
+                key={id}
+                videoId={id}
                 onOpen={() => setActiveIdx(i)}
               />
             ))}
@@ -327,7 +250,6 @@ export function UGCVideos() {
           </div>
         </>
       ) : (
-        // Reserve the scroll height so the page layout doesn't jump when cards mount
         <div className="h-[430px] sm:h-[460px] lg:h-[520px]" aria-hidden>
           <div className="h-full w-full grid place-items-center text-white/30 text-xs">
             <div className="animate-pulse">Loading creatives…</div>
@@ -337,7 +259,10 @@ export function UGCVideos() {
 
       {/* Modal */}
       {activeIdx !== null && (
-        <UGCModal item={ugcVideos[activeIdx]} onClose={() => setActiveIdx(null)} />
+        <UGCModal
+          videoId={ugcVideoIds[activeIdx]}
+          onClose={() => setActiveIdx(null)}
+        />
       )}
     </section>
   );
