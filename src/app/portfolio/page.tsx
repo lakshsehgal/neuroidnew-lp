@@ -17,7 +17,7 @@ export default function PortfolioPage() {
 
       <div className="relative max-w-7xl mx-auto px-5 sm:px-6">
         {/* Header */}
-        <div className="max-w-3xl mb-12 sm:mb-16">
+        <div className="max-w-3xl mb-10 sm:mb-14 text-center mx-auto">
           <div className="inline-block text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-gold mb-3 sm:mb-4 font-semibold animate-fade-in-up">
             / Portfolio
           </div>
@@ -25,17 +25,16 @@ export default function PortfolioPage() {
             className="text-[2.5rem] sm:text-6xl lg:text-7xl font-black leading-[0.95] tracking-[-0.035em] mb-5 sm:mb-6 animate-fade-in-up"
             style={{ animationDelay: "100ms" }}
           >
-            Creative that
+            Check out some of
             <br />
-            <span className="text-gradient-gold">scales brands.</span>
+            <span className="text-gradient-gold">our work.</span>
           </h1>
           <p
-            className="text-[15px] sm:text-lg text-white/60 max-w-xl leading-relaxed animate-fade-in-up"
+            className="text-[15px] sm:text-lg text-white/60 max-w-xl mx-auto leading-relaxed animate-fade-in-up"
             style={{ animationDelay: "200ms" }}
           >
             UGC reels, HighProds, and performance creatives — all produced by
-            Neuroid and battle-tested at scale. Tap any video to watch with
-            sound.
+            Neuroid and battle-tested at scale. Tap any creative to view.
           </p>
         </div>
 

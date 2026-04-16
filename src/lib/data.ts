@@ -103,6 +103,34 @@ export const ugcVideoIds: string[] = [
   "CrzAQHOWAl0",
 ];
 
+// Static ad creatives for the Portfolio page.
+export const staticCreatives: string[] = [
+  "/creatives/static/Artboard 1 copy.png",
+  "/creatives/static/Artboard 1tu.png",
+  "/creatives/static/Artboard 1uyigu (1).png",
+  "/creatives/static/Artboard 3 (1).png",
+  "/creatives/static/1 (2) (1) (1).png",
+  "/creatives/static/CC100_Review Static_Static.jpg",
+  "/creatives/static/CC14 _ Mirage _ Static -01.jpg",
+  "/creatives/static/CC15- Winter wear2 (1).jpg",
+  "/creatives/static/CC16- LEGGING - Static.jpg",
+  "/creatives/static/CC22_Sale frame_Static (1).jpg",
+  "/creatives/static/CC3  BFCM Static 02_Sq.jpg",
+  "/creatives/static/CC80_Hype Static_01.jpg",
+  "/creatives/static/CC80_Hype Static_02.jpg",
+  "/creatives/static/CC82_Valentine day_Banner_valentine's Edit (1).jpg",
+  "/creatives/static/CC94_Bestsellers_Static-03.jpg",
+  "/creatives/static/Drip Project Year end sale 960X1200.jpg",
+  "/creatives/static/Hoodie Unstd V1 .png",
+  "/creatives/static/Jaipuri Crown_CC23.jpg",
+  "/creatives/static/Nourish you milk 4X5 (2).png",
+  "/creatives/static/OPT 1.jpg",
+  "/creatives/static/OPT 2.jpg",
+  "/creatives/static/Oats 1080x1080.jpg",
+  "/creatives/static/V3_1200.jpg",
+  "/creatives/static/Youglo Glitter BFCM Sale V1.png",
+];
+
 // Real media for the Creative Wall scrolling section.
 // Point at files dropped in /public/creatives/static and /public/creatives/videos.
 // The component URL-encodes paths, so spaces/parens/apostrophes in filenames are fine.
