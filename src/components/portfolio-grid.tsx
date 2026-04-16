@@ -288,25 +288,6 @@ export function PortfolioGrid() {
         </div>
       )}
 
-      {/* Count label */}
-      <div className="mt-10 sm:mt-14 text-center text-sm text-white/40">
-        {tab === "videos" ? (
-          <>
-            <span className="font-semibold text-white/60">
-              {ugcVideoIds.length} video creatives
-            </span>
-            {" · "}and counting
-          </>
-        ) : (
-          <>
-            <span className="font-semibold text-white/60">
-              {staticCreatives.length} static creatives
-            </span>
-            {" · "}and counting
-          </>
-        )}
-      </div>
-
       {/* Modals */}
       {activeVideo !== null && (
         <VideoModal

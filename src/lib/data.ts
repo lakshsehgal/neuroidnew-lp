@@ -102,6 +102,8 @@ export const ugcVideoIds: string[] = [
   "zhLdl53TxDg",
   "CrzAQHOWAl0",
   "0J6MKpDzNHM",
+  "Lnq1yAG2OUE",
+  "thjOsfLyqFk",
 ];
 
 // Static ad creatives for the Portfolio page.
