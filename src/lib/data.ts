@@ -84,6 +84,7 @@ export type Creative = {
 // Hosted on YouTube (unlisted) instead of self-hosted MP4s for fast loading.
 // Thumbnails fetched from i.ytimg.com, iframes mounted only on click.
 export const ugcVideoIds: string[] = [
+  "8y1P9ns8PVs",
   "Ca9ANNZlSaM",
   "hVLaSdnJW2M",
   "Gl4ny_vfkCE",
